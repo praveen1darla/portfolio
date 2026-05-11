@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DARLA PRAVEEN | Cybersecurity Portfolio</title>
+  <meta name="description" content="Personal portfolio of DARLA PRAVEEN — Cybersecurity Student, Ethical Hacking Enthusiast, and Security Research Learner." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="chatbot.css" />
+</head>
+<body>
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <a href="#home" class="nav-logo">
+      <span class="logo-bracket">&lt;</span>DP<span class="logo-slash">/</span><span class="logo-bracket">&gt;</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========== HERO / HOME ========== -->
+  <section class="hero" id="home">
+    <canvas id="matrixCanvas"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">&gt; initializing_portfolio<span class="blink">_</span></p>
+      <h1 class="hero-title glitch" data-text="Welcome to My Website">Welcome to My Website</h1>
+      <p class="hero-subtitle" id="typedText"></p>
+      <div class="hero-cta">
+        <a href="#about" class="btn btn-primary"><i class="fas fa-user-secret"></i> About Me</a>
+        <a href="#projects" class="btn btn-outline"><i class="fas fa-code"></i> View Projects</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll Down</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title"><span class="title-decorator">//</span> About Me</h2>
+      <div class="about-wrapper">
+        <!-- Profile Photo -->
+        <div class="about-photo-card">
+          <div class="photo-frame">
+            <img src="profile.png" alt="DARLA PRAVEEN" class="profile-img" />
+            <div class="photo-border"></div>
+          </div>
+          <h3 class="photo-name">DARLA PRAVEEN</h3>
+          <p class="photo-role">B.Tech CS (Cyber Security)</p>
+          <div class="photo-status"><span class="status-dot"></span> Available for Collaboration</div>
+          <div class="photo-location">
+            <i class="fas fa-map-marker-alt"></i> Pamulapadu, Guntur, Andhra Pradesh
+          </div>
+          <div class="photo-contact">
+            <a href="tel:7989846814" class="photo-contact-item">
+              <i class="fas fa-phone"></i> 7989846814
+            </a>
+            <a href="mailto:darlapraveen87@gmail.com" class="photo-contact-item">
+              <i class="fas fa-envelope"></i> darlapraveen87@gmail.com
+            </a>
+          </div>
+          <div class="photo-socials">
+            <a href="https://www.linkedin.com/in/praveen-darla-875773385" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <!-- Details Column -->
+        <div class="about-details">
+
+          <!-- Terminal — Personal Info -->
+          <div class="about-card about-info">
+            <div class="terminal-header">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">about_me.sh</span>
+            </div>
+            <div class="terminal-body">
+              <p class="terminal-line"><span class="prompt">$</span> cat /home/praveen/about.txt</p>
+              <p class="terminal-output"><span class="key">Name:</span> DARLA PRAVEEN</p>
+              <p class="terminal-output"><span class="key">Degree:</span> B.Tech — <span id="terminalYear">3rd</span> Year</p>
+              <p class="terminal-output"><span class="key">Branch:</span> CS (Cyber Security)</p>
+              <p class="terminal-output"><span class="key">Origin:</span> Pamulapadu, Guntur, Andhra Pradesh</p>
+              <p class="terminal-output"><span class="key">Status:</span> <span class="status-online">● Active</span></p>
+              <p class="terminal-line"><span class="prompt">$</span> echo $BIO</p>
+              <p class="terminal-output bio-text">I am a passionate cybersecurity student interested in ethical hacking, penetration testing, network security, Linux systems, and security research. I am also a member of the Robotics Lab, working on 3D point cloud mapping, autonomous navigation, and robot dog-wheel systems. I enjoy learning modern security technologies and building innovative projects.</p>
+              <p class="terminal-line"><span class="prompt">$</span> <span class="blink">_</span></p>
+            </div>
+          </div>
+
+          <!-- Education Timeline -->
+          <div class="about-card education-card">
+            <h3 class="card-title"><i class="fas fa-graduation-cap"></i> Education</h3>
+            <div class="timeline">
+              <div class="timeline-item" id="btechTimeline">
+                <div class="timeline-marker current" id="btechMarker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-badge" id="btechBadge">Current</div>
+                  <h4>B.Tech — CS (Cyber Security)</h4>
+                  <p class="timeline-detail" id="btechDetail">3rd Year • Undergraduate • Kakinada</p>
+                  <p class="timeline-sub" id="btechSub">Member of Robotics Lab — Domain: Robotics</p>
+                  <a href="certifications.html" target="_blank" class="timeline-cert-link">
+                    <i class="fas fa-certificate"></i> Certifications <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <h4>Diploma — CME (Computer Engineering)</h4>
+                  <p class="timeline-detail">Completed in 2025 • Guntur</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <h4>Schooling</h4>
+                  <p class="timeline-detail">Completed in 2022 • Guntur</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Robotics Lab — Current Work -->
+          <div class="about-card current-work-card">
+            <h3 class="card-title"><i class="fas fa-robot"></i> Robotics Lab <span class="live-badge"><span class="live-dot"></span> Active</span></h3>
+            <div class="work-highlight">
+              <div class="work-icon"><i class="fas fa-cubes"></i></div>
+              <div class="work-info">
+                <h4>3D Point Cloud Mapping & Navigation</h4>
+                <p>Building real-time 3D environment maps using LiDAR-Inertial odometry (LIO-SAM), OctoMap-based volumetric representations, and ROS 2 navigation stacks for autonomous rover exploration and path planning.</p>
+              </div>
+            </div>
+            <div class="work-highlight">
+              <div class="work-icon"><i class="fas fa-dog"></i></div>
+              <div class="work-info">
+                <h4>Robot Dog-Wheel System</h4>
+                <p>Working on a hybrid robot dog-wheel platform combining legged and wheeled locomotion for enhanced mobility across diverse terrains.</p>
+              </div>
+            </div>
+            <div class="work-tags">
+              <span class="work-tag">ROS 2</span>
+              <span class="work-tag">LIO-SAM</span>
+              <span class="work-tag">OctoMap</span>
+              <span class="work-tag">Gazebo</span>
+              <span class="work-tag">Point Clouds</span>
+              <span class="work-tag">SLAM</span>
+              <span class="work-tag">Nav2</span>
+              <span class="work-tag">Robot Dog-Wheel</span>
+            </div>
+          </div>
+
+          <!-- Skills -->
+          <div class="about-card about-skills">
+            <h3 class="card-title"><i class="fas fa-shield-halved"></i> Skill Arsenal</h3>
+            <div class="skills-grid">
+              <div class="skill-item">
+                <i class="fas fa-bug"></i>
+                <span>Ethical Hacking</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-crosshairs"></i>
+                <span>Penetration Testing</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-wand-magic-sparkles"></i>
+                <span>Web & App Dev with AI</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-code"></i>
+                <span>Vibe Coder</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-microchip"></i>
+                <span>Computer Hardware</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-linux"></i>
+                <span>Kali Linux & Ubuntu</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-magnifying-glass"></i>
+                <span>Security Research</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-lock"></i>
+                <span>Cryptography</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-robot"></i>
+                <span>Robotics & ROS 2</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-cube"></i>
+                <span>3D Mapping & SLAM</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJECTS ========== -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <h2 class="section-title"><span class="title-decorator">//</span> My Projects</h2>
+      <p class="section-desc">A showcase of my cybersecurity projects and tools.</p>
+      <div class="projects-grid projects-grid--three">
+        <a href="https://darla.pythonanywhere.com" target="_blank" class="project-card" id="project1">
+          <div class="project-number">01</div>
+          <div class="project-icon"><i class="fas fa-file-shield"></i></div>
+          <h3 class="project-name">Secured Log Analysis & Threat Hunting System</h3>
+          <p class="project-desc">A security log analysis platform that parses, correlates, and visualizes system logs to detect suspicious activities, anomalies, and potential threats in real time. Features automated threat hunting workflows, rule-based alerting, and interactive dashboards for SOC-level monitoring.</p>
+          <div class="project-tags">
+            <span class="work-tag">Log Analysis</span>
+            <span class="work-tag">Threat Hunting</span>
+            <span class="work-tag">SIEM</span>
+            <span class="work-tag">Python</span>
+          </div>
+          <span class="project-link">View Project <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="#" target="_blank" class="project-card" id="project2">
+          <div class="project-number">02</div>
+          <div class="project-icon"><i class="fas fa-robot"></i></div>
+          <h3 class="project-name">CyberGuard AI Chatbot</h3>
+          <p class="project-desc">An AI-powered cybersecurity chatbot that provides real-time security guidance, vulnerability explanations, and incident response recommendations. Uses natural language processing to answer security queries, suggest remediation steps, and educate users on best practices.</p>
+          <div class="project-tags">
+            <span class="work-tag">AI / NLP</span>
+            <span class="work-tag">Chatbot</span>
+            <span class="work-tag">Cybersecurity</span>
+            <span class="work-tag">Python</span>
+          </div>
+          <span class="project-link">View Project <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="#" target="_blank" class="project-card" id="project3">
+          <div class="project-number">03</div>
+          <div class="project-icon"><i class="fas fa-cubes"></i></div>
+          <h3 class="project-name">3D Point Cloud Mapping & Navigation</h3>
+          <p class="project-desc">A custom-architecture robotics system for real-time 3D environment mapping and autonomous navigation. Uses OctoMap for volumetric spatial representation, LiDAR-Inertial SLAM for odometry, and a custom navigation stack for path planning and obstacle avoidance in unknown environments.</p>
+          <div class="project-tags">
+            <span class="work-tag">OctoMap</span>
+            <span class="work-tag">ROS 2</span>
+            <span class="work-tag">SLAM</span>
+            <span class="work-tag">LIO-SAM</span>
+            <span class="work-tag">Nav2</span>
+          </div>
+          <span class="project-link">View Project <i class="fas fa-arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title"><span class="title-decorator">//</span> Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <h3>Phone</h3>
+          <a href="tel:7989846814">7989846814</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <h3>Email</h3>
+          <a href="mailto:darlapraveen87@gmail.com" target="_blank">darlapraveen87@gmail.com</a>
+        </div>
+      </div>
+      <div class="social-links">
+        <h3 class="social-title">Connect With Me</h3>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/praveen-darla-875773385" target="_blank" rel="noopener noreferrer" class="social-btn linkedin" aria-label="LinkedIn" id="socialLinkedin">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn instagram" aria-label="Instagram" id="socialInstagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn twitter" aria-label="Twitter / X" id="socialTwitter">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-grid"></div>
+    <p>&copy; 2026 DARLA PRAVEEN | Cybersecurity Portfolio</p>
+    <span class="footer-tag">&lt;/&gt; Built with passion for security</span>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
