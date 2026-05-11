@@ -8,7 +8,7 @@
   'use strict';
 
   // ───── Gemini API Key (Free from https://aistudio.google.com/apikey) ─────
-  const GEMINI_API_KEY = 'AIzaSyBwZAXaPU16fDcvlkNaC5JfFCiE4Omd8mA';
+  const GEMINI_API_KEY = 'AIzaSyBVBas4A352wF7b2XKiEEM6J9HH7ZRb30I';
 
   // ───── Praveen's Bio Context (for AI system prompt) ─────
   const BIO_CONTEXT = `

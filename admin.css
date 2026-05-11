@@ -1,0 +1,758 @@
+/* ============================================
+   CyberGuard Admin Control Center
+   Hidden Admin Access + Security Dashboard
+   ============================================ */
+
+/* ===== Overlay Backdrop ===== */
+.admin-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 50000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s cubic-bezier(.4,0,.2,1);
+}
+.admin-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== Login Terminal ===== */
+.admin-login {
+  width: 420px;
+  max-width: 92vw;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 23, 68, .25);
+  border-radius: 16px;
+  overflow: hidden;
+  transform: translateY(30px) scale(.95);
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 20px 60px rgba(0,0,0,.7), 0 0 40px rgba(255,23,68,.08);
+}
+.admin-overlay.active .admin-login {
+  transform: translateY(0) scale(1);
+}
+.admin-login-header {
+  padding: 20px 24px 16px;
+  background: linear-gradient(135deg, #1a0000, #0d0d0d);
+  border-bottom: 1px solid rgba(255,23,68,.15);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.admin-login-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #ff1744, #b71c1c);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #fff;
+  box-shadow: 0 0 16px rgba(255,23,68,.3);
+}
+.admin-login-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .85rem;
+  color: #ff1744;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.admin-login-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .7rem;
+  color: rgba(255,255,255,.35);
+  margin-top: 2px;
+}
+.admin-login-body {
+  padding: 28px 24px 32px;
+}
+.admin-login-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .75rem;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 10px;
+  display: block;
+}
+.admin-login-label i {
+  color: #ff1744;
+  margin-right: 6px;
+}
+.admin-login-input {
+  width: 100%;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,23,68,.15);
+  border-radius: 10px;
+  padding: 14px 18px;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .9rem;
+  letter-spacing: 3px;
+  outline: none;
+  transition: all .25s ease;
+  box-sizing: border-box;
+}
+.admin-login-input:focus {
+  border-color: rgba(255,23,68,.5);
+  box-shadow: 0 0 20px rgba(255,23,68,.1);
+}
+.admin-login-input.shake {
+  animation: admin-shake .4s ease;
+  border-color: #ff1744;
+}
+@keyframes admin-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+.admin-login-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: linear-gradient(135deg, #ff1744, #b71c1c);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all .25s ease;
+  box-shadow: 0 4px 16px rgba(255,23,68,.3);
+}
+.admin-login-btn:hover {
+  box-shadow: 0 6px 24px rgba(255,23,68,.45);
+  transform: translateY(-1px);
+}
+.admin-login-btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+  transform: none;
+}
+.admin-login-status {
+  margin-top: 14px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .72rem;
+  text-align: center;
+  min-height: 18px;
+}
+.admin-login-status.error { color: #ff1744; }
+.admin-login-status.success { color: #00e676; }
+.admin-login-status.warning { color: #ffd600; }
+.admin-login-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.3);
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: color .2s;
+  z-index: 2;
+}
+.admin-login-close:hover { color: #ff1744; }
+
+/* ===== Dashboard ===== */
+.admin-dashboard {
+  position: fixed;
+  inset: 0;
+  background: #060608;
+  z-index: 50001;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(.98);
+  transition: all .35s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+}
+.admin-dashboard.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* Dashboard Header */
+.admin-dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px;
+  background: linear-gradient(135deg, #0d0000, #080808);
+  border-bottom: 1px solid rgba(255,23,68,.12);
+  flex-shrink: 0;
+}
+.admin-dash-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.admin-dash-logo {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #ff1744, #b71c1c);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255,23,68,.2);
+}
+.admin-dash-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .9rem;
+  color: #ff1744;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.admin-dash-subtitle {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .65rem;
+  color: rgba(255,255,255,.3);
+  margin-top: 2px;
+}
+.admin-dash-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.admin-dash-time {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .72rem;
+  color: rgba(255,255,255,.3);
+}
+.admin-dash-close {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,23,68,.12);
+  border-radius: 8px;
+  color: rgba(255,255,255,.4);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+}
+.admin-dash-close:hover {
+  color: #ff1744;
+  border-color: rgba(255,23,68,.4);
+  background: rgba(255,23,68,.06);
+}
+
+/* Stats Cards Row */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 20px 28px;
+  flex-shrink: 0;
+}
+.admin-stat-card {
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(255,23,68,.08);
+  border-radius: 12px;
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all .25s ease;
+}
+.admin-stat-card:hover {
+  border-color: rgba(255,23,68,.2);
+  background: rgba(255,23,68,.03);
+}
+.admin-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+}
+.admin-stat-card:nth-child(1)::before { background: linear-gradient(90deg, #00e5ff, #0091ea); }
+.admin-stat-card:nth-child(2)::before { background: linear-gradient(90deg, #ff1744, #d50000); }
+.admin-stat-card:nth-child(3)::before { background: linear-gradient(90deg, #ffd600, #ff6d00); }
+.admin-stat-card:nth-child(4)::before { background: linear-gradient(90deg, #00e676, #00c853); }
+.admin-stat-icon {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+.admin-stat-card:nth-child(1) .admin-stat-icon { color: #00e5ff; }
+.admin-stat-card:nth-child(2) .admin-stat-icon { color: #ff1744; }
+.admin-stat-card:nth-child(3) .admin-stat-icon { color: #ffd600; }
+.admin-stat-card:nth-child(4) .admin-stat-icon { color: #00e676; }
+.admin-stat-value {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+.admin-stat-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .68rem;
+  color: rgba(255,255,255,.35);
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+/* Tab Navigation */
+.admin-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 0 28px;
+  border-bottom: 1px solid rgba(255,23,68,.08);
+  flex-shrink: 0;
+}
+.admin-tab {
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: .85rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.35);
+  cursor: pointer;
+  position: relative;
+  transition: all .2s;
+}
+.admin-tab:hover { color: rgba(255,255,255,.6); }
+.admin-tab.active {
+  color: #ff1744;
+}
+.admin-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ff1744;
+  border-radius: 2px 2px 0 0;
+}
+.admin-tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  background: #ff1744;
+  color: #fff;
+  font-size: .6rem;
+  font-family: 'Orbitron', sans-serif;
+  border-radius: 9px;
+  padding: 0 5px;
+  margin-left: 6px;
+}
+
+/* Tab Content */
+.admin-tab-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 28px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,23,68,.15) transparent;
+}
+.admin-tab-content::-webkit-scrollbar { width: 5px; }
+.admin-tab-content::-webkit-scrollbar-track { background: transparent; }
+.admin-tab-content::-webkit-scrollbar-thumb { background: rgba(255,23,68,.2); border-radius: 3px; }
+.admin-tab-panel {
+  display: none;
+  animation: admin-fade-in .3s ease;
+}
+.admin-tab-panel.active { display: block; }
+@keyframes admin-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Data Table ===== */
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+}
+.admin-table th {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .7rem;
+  color: rgba(255,255,255,.35);
+  text-align: left;
+  padding: 8px 14px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  font-weight: 400;
+}
+.admin-table td {
+  padding: 12px 14px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: .85rem;
+  color: rgba(255,255,255,.75);
+  background: rgba(255,255,255,.02);
+}
+.admin-table tr td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.admin-table tr td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.admin-table tbody tr {
+  transition: all .2s;
+}
+.admin-table tbody tr:hover td {
+  background: rgba(255,23,68,.04);
+}
+.admin-ip {
+  font-family: 'Share Tech Mono', monospace;
+  color: #00e5ff;
+  font-size: .82rem;
+}
+.admin-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.admin-badge-active {
+  background: rgba(0,230,118,.1);
+  color: #00e676;
+  border: 1px solid rgba(0,230,118,.2);
+}
+.admin-badge-blocked {
+  background: rgba(255,23,68,.1);
+  color: #ff1744;
+  border: 1px solid rgba(255,23,68,.2);
+}
+.admin-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.admin-location i {
+  color: rgba(255,255,255,.25);
+  font-size: .7rem;
+}
+
+/* Action Buttons */
+.admin-action-btn {
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid;
+  background: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  margin-right: 6px;
+}
+.admin-action-btn.block {
+  color: #ff1744;
+  border-color: rgba(255,23,68,.25);
+}
+.admin-action-btn.block:hover {
+  background: rgba(255,23,68,.1);
+  border-color: #ff1744;
+}
+.admin-action-btn.unblock {
+  color: #00e676;
+  border-color: rgba(0,230,118,.25);
+}
+.admin-action-btn.unblock:hover {
+  background: rgba(0,230,118,.1);
+  border-color: #00e676;
+}
+.admin-action-btn.remove {
+  color: #ff6d00;
+  border-color: rgba(255,109,0,.25);
+}
+.admin-action-btn.remove:hover {
+  background: rgba(255,109,0,.1);
+  border-color: #ff6d00;
+}
+
+/* ===== Security Alert Cards ===== */
+.admin-alert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.admin-alert-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: rgba(255,255,255,.02);
+  border-radius: 10px;
+  border-left: 3px solid;
+  transition: background .2s;
+}
+.admin-alert-card:hover {
+  background: rgba(255,255,255,.04);
+}
+.admin-alert-card.critical {
+  border-left-color: #ff1744;
+}
+.admin-alert-card.warning {
+  border-left-color: #ffd600;
+}
+.admin-alert-card.info {
+  border-left-color: #00e5ff;
+}
+.admin-alert-severity {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.admin-alert-card.critical .admin-alert-severity {
+  background: rgba(255,23,68,.12);
+  color: #ff1744;
+}
+.admin-alert-card.warning .admin-alert-severity {
+  background: rgba(255,214,0,.12);
+  color: #ffd600;
+}
+.admin-alert-card.info .admin-alert-severity {
+  background: rgba(0,229,255,.12);
+  color: #00e5ff;
+}
+.admin-alert-content {
+  flex: 1;
+}
+.admin-alert-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: .88rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 4px;
+}
+.admin-alert-desc {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .72rem;
+  color: rgba(255,255,255,.4);
+  line-height: 1.5;
+}
+.admin-alert-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+}
+.admin-alert-meta span {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .65rem;
+  color: rgba(255,255,255,.25);
+}
+.admin-alert-meta .admin-ip {
+  font-size: .7rem;
+}
+.admin-alert-actions {
+  flex-shrink: 0;
+  display: flex;
+  gap: 6px;
+}
+
+/* ===== Toast Notifications ===== */
+.admin-toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 60000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.admin-toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: #0a0a0a;
+  border: 1px solid rgba(255,23,68,.2);
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.5), 0 0 20px rgba(255,23,68,.06);
+  transform: translateX(120%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  pointer-events: auto;
+  max-width: 380px;
+}
+.admin-toast.show {
+  transform: translateX(0);
+}
+.admin-toast-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .75rem;
+  flex-shrink: 0;
+}
+.admin-toast.critical .admin-toast-icon {
+  background: rgba(255,23,68,.15);
+  color: #ff1744;
+}
+.admin-toast.warning .admin-toast-icon {
+  background: rgba(255,214,0,.15);
+  color: #ffd600;
+}
+.admin-toast.info .admin-toast-icon {
+  background: rgba(0,229,255,.15);
+  color: #00e5ff;
+}
+.admin-toast-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: .82rem;
+  color: rgba(255,255,255,.8);
+}
+
+/* ===== Blocked Access Overlay ===== */
+.admin-blocked-overlay {
+  position: fixed;
+  inset: 0;
+  background: #050505;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.admin-blocked-icon {
+  font-size: 4rem;
+  color: #ff1744;
+  margin-bottom: 24px;
+  animation: admin-pulse-blocked 2s ease-in-out infinite;
+}
+@keyframes admin-pulse-blocked {
+  0%, 100% { opacity: .6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+.admin-blocked-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  color: #ff1744;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+.admin-blocked-msg {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .8rem;
+  color: rgba(255,255,255,.35);
+  max-width: 400px;
+  line-height: 1.6;
+}
+.admin-blocked-ip {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .75rem;
+  color: rgba(255,255,255,.2);
+  margin-top: 20px;
+}
+
+/* ===== Empty State ===== */
+.admin-empty {
+  text-align: center;
+  padding: 60px 20px;
+}
+.admin-empty i {
+  font-size: 2.5rem;
+  color: rgba(255,255,255,.08);
+  margin-bottom: 16px;
+}
+.admin-empty p {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .78rem;
+  color: rgba(255,255,255,.2);
+}
+
+/* ===== Long Press Visual Indicator ===== */
+.admin-longpress-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  pointer-events: none;
+  z-index: 10;
+}
+.admin-longpress-ring.pressing {
+  border-color: #ff1744;
+  animation: admin-ring-fill 5s linear forwards;
+}
+@keyframes admin-ring-fill {
+  0% { clip-path: polygon(50% 50%, 50% 0%, 50% 0%); }
+  12.5% { clip-path: polygon(50% 50%, 50% 0%, 100% 0%); }
+  25% { clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 50%); }
+  37.5% { clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%); }
+  50% { clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 50% 100%); }
+  62.5% { clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%); }
+  75% { clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50%); }
+  87.5% { clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%); }
+  100% { clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 0%); }
+}
+
+/* Profile image press hint (subtle pulse) */
+.photo-frame { position: relative; }
+
+/* ===== Honeypot (hidden) ===== */
+.admin-hp {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 14px 16px;
+  }
+  .admin-dash-header { padding: 12px 16px; }
+  .admin-tabs { padding: 0 16px; overflow-x: auto; }
+  .admin-tab-content { padding: 14px 16px; }
+  .admin-table { font-size: .78rem; }
+  .admin-table th, .admin-table td { padding: 10px; }
+}
+@media (max-width: 600px) {
+  .admin-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .admin-stat-value { font-size: 1.3rem; }
+  .admin-dash-header { flex-wrap: wrap; gap: 8px; padding: 10px 12px; }
+  .admin-tabs { gap: 0; }
+  .admin-tab { padding: 10px 12px; font-size: .78rem; }
+  .admin-tab-content { padding: 10px 12px; }
+  .admin-table-wrap { overflow-x: auto; }
+  .admin-alert-card { flex-wrap: wrap; }
+  .admin-toast { max-width: 90vw; }
+}
