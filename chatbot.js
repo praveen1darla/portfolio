@@ -7,78 +7,29 @@
 (function() {
   'use strict';
 
-  // ───── Gemini API Key (Free from https://aistudio.google.com/apikey) ─────
-  const GEMINI_API_KEY = 'AIzaSyBVBas4A352wF7b2XKiEEM6J9HH7ZRb30I';
+  // ───── Backend API URL (deployed on Railway) ─────
+  // Change this to your Railway URL after deploying bot_3
+  const BACKEND_URL = 'https://web-production-9c69c.up.railway.app';
 
-  // ───── Praveen's Bio Context (for AI system prompt) ─────
-  const BIO_CONTEXT = `
-You are CyberGuard AI, a smart AI assistant embedded on Darla Praveen's personal cybersecurity portfolio website.
-
-ABOUT THE WEBSITE OWNER:
-- Name: Darla Praveen
-- Degree: B.Tech 3rd Year — CS (Cyber Security), Kakinada
-- Diploma: CME (Computer Engineering), completed 2025, Guntur
-- Schooling: Completed 2022, Guntur
-- Village: Pamulapadu, Guntur, Andhra Pradesh
-- Phone: 7989846814
-- Email: darlapraveen87@gmail.com
-- LinkedIn: https://www.linkedin.com/in/praveen-darla-875773385
-- Lab: Member of Robotics Lab, Domain: Robotics
-- Lab Work: 3D Point Cloud Mapping & Navigation (LIO-SAM, OctoMap, ROS 2, Gazebo, Nav2), Robot Dog-Wheel System
-- Skills: Ethical Hacking, Penetration Testing, Web & App Dev with AI, Vibe Coder, Computer Hardware, Kali Linux & Ubuntu, Security Research, Cryptography, Robotics & ROS 2, 3D Mapping & SLAM
-- Projects: (1) Secured Log Analysis & Threat Hunting System, (2) CyberGuard AI Chatbot, (3) 3D Point Cloud Mapping & Navigation using OctoMap
-- Certification: Certificate of Merit in C & JAVA from CDST Informatics Pvt. Ltd., Grade A, 82%, Nov 2024–Apr 2025
-- Status: Available for Collaboration
-
-YOUR BEHAVIOR RULES:
-1. You are a GENERAL PURPOSE AI assistant. Answer ANY question the user asks — science, technology, coding, math, history, general knowledge, ANY topic.
-2. When the user specifically asks about Praveen, his bio, his skills, projects, education, or contact — provide detailed info from the context above.
-3. For all other questions (coding, science, math, general knowledge, etc.), answer them normally and accurately like a helpful AI assistant.
-4. Keep responses concise but informative.
-5. Be friendly and professional.
-6. You can respond in any language the user uses.
-7. Do NOT redirect non-bio questions to Praveen's info. Answer the actual question asked.
-8. Use emojis sparingly for friendliness.
-`;
+  // ───── Praveen's Bio Context (kept for reference, actual prompt is on the server) ─────
 
   // ───── Chat History for Context ─────
   let chatHistory = [];
+  const sessionId = 'portfolio_' + Math.random().toString(36).substr(2, 9);
 
-  // ───── Call Gemini API with auto-retry ─────
+  // ───── Call Backend API with auto-retry ─────
   async function callGeminiAPI(userMessage, retryCount = 0) {
-    // Add to history only on first attempt
-    if (retryCount === 0) {
-      chatHistory.push({ role: 'user', parts: [{ text: userMessage }] });
-    }
-
-    // Keep last 10 messages for context
-    const recentHistory = chatHistory.slice(-10);
-
-    const body = {
-      system_instruction: { parts: [{ text: BIO_CONTEXT }] },
-      contents: recentHistory,
-      generationConfig: {
-        temperature: 0.7,
-        maxOutputTokens: 500,
-        topP: 0.9,
-      }
-    };
-
-    // Use gemini-2.5-flash (best free tier availability)
-    const model = 'gemini-2.5-flash';
-
     try {
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        }
-      );
+      const res = await fetch(`${BACKEND_URL}/api/portfolio-chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: userMessage,
+          session_id: sessionId
+        })
+      });
 
       if (res.status === 429) {
-        // Rate limited — auto-retry after delay
         if (retryCount < 3) {
           const waitSec = (retryCount + 1) * 3;
           await new Promise(r => setTimeout(r, waitSec * 1000));
@@ -89,20 +40,14 @@ YOUR BEHAVIOR RULES:
 
       if (!res.ok) {
         const errData = await res.json().catch(() => ({}));
-        throw new Error(errData.error?.message || `API error: ${res.status}`);
+        throw new Error(errData.error || `Server error: ${res.status}`);
       }
 
       const data = await res.json();
-      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I couldn\'t process that. Please try again.';
-
-      // Add to history
-      chatHistory.push({ role: 'model', parts: [{ text: reply }] });
-
-      return reply;
+      return data.response || 'Sorry, I couldn\'t process that. Please try again.';
 
     } catch (err) {
-      console.error('Gemini API Error:', err);
-      // Auto-retry on network errors
+      console.error('Backend API Error:', err);
       if (retryCount < 2) {
         await new Promise(r => setTimeout(r, 2000));
         return callGeminiAPI(userMessage, retryCount + 1);
