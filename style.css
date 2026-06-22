@@ -1502,6 +1502,46 @@ img { max-width: 100%; display: block; }
   border-left: 2px solid rgba(57,255,20,.4);
   padding-left: 14px;
 }
+.robotics-story {
+  display: grid;
+  gap: 12px;
+}
+.robotics-detail {
+  border: 1px solid rgba(0,240,255,.1);
+  border-radius: var(--radius-md);
+  background: rgba(0,240,255,.025);
+  overflow: hidden;
+  transition: border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+.robotics-detail[open] {
+  border-color: rgba(57,255,20,.22);
+  background: rgba(57,255,20,.035);
+  box-shadow: 0 10px 26px rgba(0,0,0,.16);
+}
+.robotics-detail summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 15px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: .86rem;
+  letter-spacing: .2px;
+}
+.robotics-detail summary::-webkit-details-marker { display: none; }
+.robotics-detail summary i {
+  color: var(--neon-green);
+  transition: transform .25s ease;
+}
+.robotics-detail[open] summary i { transform: rotate(180deg); }
+.robotics-detail > p,
+.robotics-detail .project-highlight-box,
+.robotics-detail .project-contributions {
+  margin: 0 15px 15px;
+}
 .project-highlight-box {
   margin: 4px 0 18px;
   padding: 18px;
@@ -1692,11 +1732,25 @@ img { max-width: 100%; display: block; }
   .projects-grid, .projects-grid--two, .projects-grid--three, .projects-grid--four, .projects-grid--robotics { grid-template-columns: 1fr; }
   .section { padding: 70px 0; }
 
+  .container { padding: 0 16px; }
+  .project-card--robotics { padding: 22px 16px; }
+  .project-card--robotics .project-name { font-size: 1.05rem; line-height: 1.35; }
+
   .slide-left { transform: translateX(-40px) scale(0.97); }
   .slide-right { transform: translateX(40px) scale(0.97); }
   .project-video-trigger { padding: 16px; }
   .project-video-trigger::after { width: 100%; margin-left: 0; text-align: center; }
   .video-modal-close { top: -14px; right: -8px; }
+  .video-modal { padding: 14px; }
+  .video-modal-panel { width: 96vw; padding: 2px; }
+  .video-modal-player { max-height: 72vh; border-radius: var(--radius-md); }
+  .project-impact { font-size: .86rem; line-height: 1.55; }
+  .robotics-detail summary { padding: 12px 13px; font-size: .78rem; }
+  .robotics-detail > p,
+  .robotics-detail .project-highlight-box,
+  .robotics-detail .project-contributions { margin: 0 13px 13px; }
+  .project-highlight-box { padding: 14px; }
+  .project-contributions li { font-size: .86rem; }
 }
 
 /* ---------- SCANLINE OVERLAY (subtle) ---------- */

@@ -454,7 +454,11 @@ document.addEventListener('DOMContentLoaded', () => {
     videoModal.classList.add('is-open');
     videoModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => modalVideo.play().catch(() => {}), 260);
+    modalVideo.controls = true;
+    modalVideo.play().catch(() => {
+      // Some mobile browsers block autoplay after UI animation.
+      // The modal still opens with native controls so the user can tap Play.
+    });
   }
 
   function closeRoboticsVideo() {
