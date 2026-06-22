@@ -277,22 +277,40 @@
       <h2 class="section-title slide-up"><span class="title-decorator">//</span> Robotics Projects</h2>
       <p class="section-desc slide-up">Robotics Lab — Building the future of autonomous systems.</p>
       <div class="projects-grid projects-grid--robotics">
-        <a href="#" target="_blank" rel="noopener noreferrer" class="project-card project-card--robotics slide-up" id="project-robotics1">
+        <article class="project-card project-card--robotics robotics-feature slide-up" id="project-robotics1">
           <div class="project-glow"></div>
           <div class="project-number">01</div>
           <div class="project-icon"><i class="fas fa-cubes"></i></div>
-          <h3 class="project-name">3D Point Cloud Mapping &amp; Navigation</h3>
-          <p class="project-desc">A custom-architecture robotics system for real-time 3D environment mapping and autonomous navigation. Uses OctoMap for volumetric spatial representation, LiDAR-Inertial SLAM for odometry, and a custom navigation stack for path planning and obstacle avoidance in unknown environments.</p>
-          <div class="project-tags">
-            <span class="work-tag">OctoMap</span>
-            <span class="work-tag">ROS 2</span>
-            <span class="work-tag">SLAM</span>
-            <span class="work-tag">LIO-SAM</span>
-            <span class="work-tag">Nav2</span>
-            <span class="work-tag">Gazebo</span>
+          <h3 class="project-name">3D Point Cloud Mapping &amp; Autonomous Navigation System</h3>
+          <video class="project-video" controls preload="metadata" playsinline>
+            <source src="robotics-navigation-demo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p class="project-desc project-impact">🚀 Designed and implemented my own ROS2-based 3D LiDAR navigation architecture, enabling autonomous mapping, localization, obstacle avoidance, and waypoint navigation in complex environments.</p>
+          <p class="project-desc">Designed and developed a custom ROS2-based autonomous navigation architecture for a mobile rover using 3D LiDAR perception. Unlike traditional navigation stacks, this system was architected and integrated from scratch by combining 3D point cloud mapping, localization, path planning, collision checking, and autonomous navigation into a unified workflow.</p>
+          <div class="project-highlight-box">
+            <h4>Custom 3D LiDAR Navigation Architecture</h4>
+            <p>Architected and developed a complete autonomous navigation framework for a ground rover using ROS2, LIO-SAM, OctoMap, and EKF sensor fusion. The system enables the rover to perceive, understand, and navigate complex environments using real-time 3D spatial information.</p>
           </div>
-          <span class="project-link">View Project <i class="fas fa-arrow-right"></i></span>
-        </a>
+          <ul class="project-contributions">
+            <li>Designed a custom navigation architecture instead of relying only on pre-built frameworks.</li>
+            <li>Integrated LIO-SAM for high-accuracy 3D LiDAR SLAM and map generation.</li>
+            <li>Built the pipeline from 3D point cloud acquisition to mapping, localization, planning, and navigation.</li>
+            <li>Implemented EKF-based sensor fusion for stable pose estimation.</li>
+            <li>Generated 3D occupancy maps using OctoMap for environment understanding.</li>
+            <li>Developed custom collision detection and navigation decision-making modules.</li>
+            <li>Enabled autonomous waypoint navigation with RViz2 visualization and debugging.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="work-tag">ROS 2</span>
+            <span class="work-tag">3D LiDAR</span>
+            <span class="work-tag">LIO-SAM</span>
+            <span class="work-tag">OctoMap</span>
+            <span class="work-tag">EKF Fusion</span>
+            <span class="work-tag">RViz2</span>
+            <span class="work-tag">Autonomous Navigation</span>
+          </div>
+        </article>
       </div>
     </div>
   </section>
