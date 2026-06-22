@@ -282,10 +282,13 @@
           <div class="project-number">01</div>
           <div class="project-icon"><i class="fas fa-cubes"></i></div>
           <h3 class="project-name">3D Point Cloud Mapping &amp; Autonomous Navigation System</h3>
-          <video class="project-video" controls preload="metadata" playsinline>
-            <source src="robotics-navigation-demo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <button class="project-video-trigger" type="button" data-video-src="robotics-navigation-demo.mp4" aria-label="Play robotics navigation demo video">
+            <span class="video-symbol"><i class="fas fa-play"></i></span>
+            <span class="video-trigger-text">
+              <strong>Watch Demo Video</strong>
+              <small>Click to expand and play</small>
+            </span>
+          </button>
           <p class="project-desc project-impact">🚀 Designed and implemented my own ROS2-based 3D LiDAR navigation architecture, enabling autonomous mapping, localization, obstacle avoidance, and waypoint navigation in complex environments.</p>
           <p class="project-desc">Designed and developed a custom ROS2-based autonomous navigation architecture for a mobile rover using 3D LiDAR perception. Unlike traditional navigation stacks, this system was architected and integrated from scratch by combining 3D point cloud mapping, localization, path planning, collision checking, and autonomous navigation into a unified workflow.</p>
           <div class="project-highlight-box">
@@ -354,6 +357,19 @@
     <p>&copy; 2026 DARLA PRAVEEN | Cybersecurity Portfolio</p>
     <span class="footer-tag">&lt;/&gt; Built with passion for security</span>
   </footer>
+
+  <div class="video-modal" id="roboticsVideoModal" aria-hidden="true" role="dialog" aria-label="Robotics project demo video">
+    <div class="video-modal-backdrop" data-video-close></div>
+    <div class="video-modal-panel" role="document">
+      <button class="video-modal-close" type="button" data-video-close aria-label="Close video">
+        <i class="fas fa-times"></i>
+      </button>
+      <video class="video-modal-player" id="roboticsModalVideo" controls preload="metadata" playsinline>
+        <source src="robotics-navigation-demo.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
 
   <script src="script.js"></script>
   <script src="chatbot.js"></script>

@@ -436,4 +436,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ───── Robotics Video: compact preview -> animated modal player ─────
+  const videoModal = document.getElementById('roboticsVideoModal');
+  const modalVideo = document.getElementById('roboticsModalVideo');
+  const videoTriggers = document.querySelectorAll('.project-video-trigger');
+  let closeTimer = null;
+
+  function openRoboticsVideo(src) {
+    if (!videoModal || !modalVideo) return;
+    const source = modalVideo.querySelector('source');
+    if (source && src && source.getAttribute('src') !== src) {
+      source.setAttribute('src', src);
+      modalVideo.load();
+    }
+    clearTimeout(closeTimer);
+    videoModal.classList.remove('is-closing');
+    videoModal.classList.add('is-open');
+    videoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => modalVideo.play().catch(() => {}), 260);
+  }
+
+  function closeRoboticsVideo() {
+    if (!videoModal || !modalVideo || !videoModal.classList.contains('is-open')) return;
+    modalVideo.pause();
+    modalVideo.currentTime = 0;
+    videoModal.classList.add('is-closing');
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => {
+      videoModal.classList.remove('is-open', 'is-closing');
+      videoModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }, 360);
+  }
+
+  videoTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => openRoboticsVideo(trigger.dataset.videoSrc));
+  });
+
+  document.querySelectorAll('[data-video-close]').forEach(closeEl => {
+    closeEl.addEventListener('click', closeRoboticsVideo);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeRoboticsVideo();
+  });
+
+  if (modalVideo) {
+    modalVideo.addEventListener('ended', closeRoboticsVideo);
+  }
+
 });
