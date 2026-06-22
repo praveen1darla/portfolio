@@ -4,7 +4,7 @@
    Powered by Google Gemini API (Free)
    ============================================ */
 
-(function() {
+(function () {
   'use strict';
 
   // ───── Backend API URL (deployed on Railway) ─────
@@ -17,7 +17,32 @@
   let chatHistory = [];
   const sessionId = 'portfolio_' + Math.random().toString(36).substr(2, 9);
 
-  // ───── Call Backend API with auto-retry ─────
+  // ───── Fallback Responses (works without internet) ─────
+  function getFallbackResponse(message) {
+    const lowerMsg = message.toLowerCase();
+
+    if (lowerMsg.includes('who are you') || lowerMsg.includes('what is your name')) {
+      return "I'm **NeonDP**, Darla Praveen's personal AI assistant! I'm here to help you learn more about Praveen and his work. 😊";
+    }
+    if (lowerMsg.includes('hello') || lowerMsg.includes('hi') || lowerMsg.includes('hey')) {
+      return "Hello! 👋 I'm NeonDP. How can I assist you today?";
+    }
+    if (lowerMsg.includes('darla') || lowerMsg.includes('praveen')) {
+      return "Darla Praveen is a cybersecurity student and robotics enthusiast! He's passionate about ethical hacking, penetration testing, and building cool robotics projects. Check out his portfolio to learn more! 🚀";
+    }
+    if (lowerMsg.includes('project') || lowerMsg.includes('work')) {
+      return "Praveen has worked on several cool projects including a Secured Log Analysis System, CyberGuard AI Chatbot, and a Universal File Converter! He's also working on 3D point cloud mapping for robotics navigation. 🤖";
+    }
+    if (lowerMsg.includes('skill') || lowerMsg.includes('abilities')) {
+      return "Praveen's skills include Ethical Hacking, Penetration Testing, Web Development, Linux Administration, Robotics with ROS2, and 3D Point Cloud Mapping! 🛡️";
+    }
+    if (lowerMsg.includes('contact') || lowerMsg.includes('email') || lowerMsg.includes('phone')) {
+      return "You can reach Praveen at darlapraveen87@gmail.com or call him at 7989846814! 📞";
+    }
+    return "I'm NeonDP, Praveen's AI assistant! I can tell you about Praveen's skills, projects, and background. Feel free to ask me anything! 😊";
+  }
+
+  // ───── Call Backend API with auto-retry and fallback ─────
   async function callGeminiAPI(userMessage, retryCount = 0) {
     try {
       const res = await fetch(`${BACKEND_URL}/api/portfolio-chat`, {
@@ -35,7 +60,7 @@
           await new Promise(r => setTimeout(r, waitSec * 1000));
           return callGeminiAPI(userMessage, retryCount + 1);
         }
-        return '⏳ Server is busy. Please wait a few seconds and try again.';
+        return getFallbackResponse(userMessage);
       }
 
       if (!res.ok) {
@@ -44,15 +69,20 @@
       }
 
       const data = await res.json();
-      return data.response || 'Sorry, I couldn\'t process that. Please try again.';
+      let response = data.response || 'Sorry, I couldn\'t process that. Please try again.';
+      // Replace old names with NeonDP
+      response = response.replace(/CyberGuard AI/gi, 'NeonDP');
+      response = response.replace(/DP PERSONAL AI ASSISTANT/gi, 'NeonDP');
+      return response;
 
     } catch (err) {
       console.error('Backend API Error:', err);
       if (retryCount < 2) {
-        await new Promise(r => setTimeout(r, 2000));
+        await new Promise(r => setTimeout(r, 1000));
         return callGeminiAPI(userMessage, retryCount + 1);
       }
-      return `❌ Connection error. Please check your internet and try again.`;
+      // Use fallback response if no internet
+      return getFallbackResponse(userMessage);
     }
   }
 
@@ -90,7 +120,27 @@
   function speak(text) {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
-    const plain = text.replace(/\*\*/g, '').replace(/[_*#`]/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/```[\s\S]*?```/g, '');
+    let plain = text.replace(/\*\*/g, '').replace(/[_*#`]/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/```[\s\S]*?```/g, '');
+    // Remove all emojis and symbols - multiple layers for safety
+    // First remove all emoji properties
+    plain = plain.replace(/[\p{Emoji}\p{Emoji_Presentation}\p{Emoji_Modifier}\p{Emoji_Modifier_Base}\p{Emoji_Component}]/gu, '');
+    // Then remove common emoji ranges
+    plain = plain.replace(/[\u{1F000}-\u{1F9FF}]/gu, '');
+    plain = plain.replace(/[\u{2600}-\u{26FF}]/gu, '');
+    plain = plain.replace(/[\u{2700}-\u{27BF}]/gu, '');
+    plain = plain.replace(/[\u{1F300}-\u{1F5FF}]/gu, '');
+    plain = plain.replace(/[\u{1F600}-\u{1F64F}]/gu, '');
+    plain = plain.replace(/[\u{1F680}-\u{1F6FF}]/gu, '');
+    plain = plain.replace(/[\u{1F700}-\u{1F77F}]/gu, '');
+    plain = plain.replace(/[\u{1F780}-\u{1F7FF}]/gu, '');
+    plain = plain.replace(/[\u{1F800}-\u{1F8FF}]/gu, '');
+    plain = plain.replace(/[\u{1F900}-\u{1F9FF}]/gu, '');
+    plain = plain.replace(/[\u{1FA00}-\u{1FA6F}]/gu, '');
+    // Also remove any other non-alphanumeric, non-punctuation symbols
+    plain = plain.replace(/[^\w\s.,!?;:'"()-]/g, '');
+    // Replace old names with NeonDP in speech
+    plain = plain.replace(/CyberGuard AI/gi, 'NeonDP');
+    plain = plain.replace(/DP PERSONAL AI ASSISTANT/gi, 'NeonDP');
     // Limit speech to first 300 chars for long responses
     const shortText = plain.length > 300 ? plain.substring(0, 300) + '...' : plain;
     const utter = new SpeechSynthesisUtterance(shortText);
@@ -99,8 +149,8 @@
     utter.volume = 0.9;
     const voices = window.speechSynthesis.getVoices();
     const enVoice = voices.find(v => v.lang.startsWith('en') && v.name.includes('Female'))
-                  || voices.find(v => v.lang.startsWith('en'))
-                  || voices[0];
+      || voices.find(v => v.lang.startsWith('en'))
+      || voices[0];
     if (enVoice) utter.voice = enVoice;
     window.speechSynthesis.speak(utter);
   }
@@ -118,7 +168,7 @@
       const text = e.results[0][0].transcript;
       onResult(text);
     };
-    recognition.onerror = () => {};
+    recognition.onerror = () => { };
     return recognition;
   }
 
@@ -126,8 +176,13 @@
   function buildUI() {
     const btn = document.createElement('div');
     btn.id = 'cyberguard-btn';
-    btn.innerHTML = '<i class="fas fa-shield-halved"></i>';
-    btn.title = 'CyberGuard AI Assistant';
+    btn.innerHTML = `
+      <i class="fas fa-shield-halved"></i>
+      <div class="btn-text">
+        <span>N</span><span>e</span><span>o</span><span>n</span><span>D</span><span>P</span>
+      </div>
+    `;
+    btn.title = 'NeonDP - AI Assistant';
     document.body.appendChild(btn);
 
     const chat = document.createElement('div');
@@ -137,7 +192,9 @@
         <div class="cg-header-info">
           <div class="cg-avatar"><i class="fas fa-shield-halved"></i></div>
           <div>
-            <div class="cg-title">CyberGuard AI</div>
+            <div class="cg-title">
+              <span>N</span><span>e</span><span>o</span><span>n</span><span>D</span><span>P</span>
+            </div>
             <div class="cg-subtitle">AI Assistant • Online</div>
           </div>
         </div>
@@ -208,9 +265,9 @@
       if (isOpen && !welcomed) {
         welcomed = true;
         setTimeout(() => {
-          const welcome = "Welcome sir! 👋 I'm **CyberGuard AI**, your intelligent assistant. I can answer **any question** — tech, science, coding, general knowledge, or anything about **Darla Praveen**. How can I help you?";
+          const welcome = "Welcome sir! 👋 I'm **NeonDP**, your intelligent assistant. I can answer **any question** — tech, science, coding, general knowledge, or anything about **Darla Praveen**. How can I help you?";
           addMessage(welcome, 'bot');
-          speak("Welcome sir! What can I do for you?");
+          speak("Welcome sir! I'm NeonDP. What can I do for you?");
         }, 500);
       }
     });
