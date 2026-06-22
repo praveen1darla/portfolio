@@ -57,14 +57,32 @@
   }
 
   // ───── Simple Markdown to HTML ─────
+  function escapeHtml(text) {
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function safeUrl(url) {
+    try {
+      const parsed = new URL(url, window.location.origin);
+      return ['http:', 'https:', 'mailto:', 'tel:'].includes(parsed.protocol) ? escapeHtml(url) : '#';
+    } catch (_) {
+      return '#';
+    }
+  }
+
   function md(text) {
-    return text
+    return escapeHtml(text)
+      .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/_(.*?)_/g, '<em>$1</em>')
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
-      .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
-      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, url) => `<a href="${safeUrl(url)}" target="_blank" rel="noopener noreferrer">${label}</a>`)
       .replace(/\n/g, '<br>');
   }
 
@@ -157,7 +175,7 @@
     if (sender === 'bot') {
       msg.innerHTML = `<div class="cg-msg-avatar"><i class="fas fa-shield-halved"></i></div><div class="cg-msg-bubble">${md(text)}</div>`;
     } else {
-      msg.innerHTML = `<div class="cg-msg-bubble">${text}</div>`;
+      msg.innerHTML = `<div class="cg-msg-bubble">${escapeHtml(text)}</div>`;
     }
 
     container.appendChild(msg);
