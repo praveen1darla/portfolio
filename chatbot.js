@@ -177,7 +177,7 @@
     const btn = document.createElement('div');
     btn.id = 'cyberguard-btn';
     btn.innerHTML = `
-      <i class="fas fa-shield-halved"></i>
+      <i class="fas fa-robot"></i>
       <div class="btn-text">
         <span>N</span><span>e</span><span>o</span><span>n</span><span>D</span><span>P</span>
       </div>
@@ -190,7 +190,7 @@
     chat.innerHTML = `
       <div class="cg-header">
         <div class="cg-header-info">
-          <div class="cg-avatar"><i class="fas fa-shield-halved"></i></div>
+          <div class="cg-avatar"><i class="fas fa-robot"></i></div>
           <div>
             <div class="cg-title">
               <span>N</span><span>e</span><span>o</span><span>n</span><span>D</span><span>P</span>

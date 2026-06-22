@@ -6,6 +6,101 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ───── Welcome Animation Overlay (Simplified) ─────
+  (function welcomeAnimation() {
+    const overlay = document.getElementById('welcomeOverlay');
+    const welcomeWords = document.querySelectorAll('.welcome-word');
+    const scrollHint = document.getElementById('scrollHint');
+
+    if (!overlay || !welcomeWords.length) return;
+
+    let animationStarted = false;
+
+    function resetAnimation() {
+      overlay.classList.remove('hidden');
+      welcomeWords.forEach(word => {
+        word.classList.remove('animate-in');
+      });
+      scrollHint.classList.remove('show');
+    }
+
+    function startAnimation() {
+      if (animationStarted) return;
+      animationStarted = true;
+      resetAnimation();
+
+      // Animate welcome words in quickly
+      welcomeWords.forEach((word, index) => {
+        setTimeout(() => word.classList.add('animate-in'), index * 60);
+      });
+
+      // Show scroll hint after 1 second
+      setTimeout(() => {
+        scrollHint.classList.add('show');
+      }, 1000);
+
+      // Hide overlay after 3 seconds total
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+      }, 3000);
+    }
+
+    // Matrix rain for welcome overlay
+    const welcomeCanvas = document.getElementById('welcomeMatrixCanvas');
+    if (welcomeCanvas) {
+      const ctx = welcomeCanvas.getContext('2d');
+      let W, H, columns, drops;
+      const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ';
+      const fontSize = 14;
+      let animationId;
+
+      function initWelcomeMatrix() {
+        W = welcomeCanvas.width = window.innerWidth;
+        H = welcomeCanvas.height = window.innerHeight;
+        columns = Math.floor(W / fontSize);
+        drops = Array.from({ length: columns }, () => Math.random() * -100);
+      }
+
+      function drawWelcomeMatrix() {
+        ctx.fillStyle = 'rgba(10, 14, 23, 0.05)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = '#00f0ff';
+        ctx.font = `${fontSize}px 'Share Tech Mono', monospace`;
+
+        for (let i = 0; i < columns; i++) {
+          const char = chars[Math.floor(Math.random() * chars.length)];
+          const x = i * fontSize;
+          const y = drops[i] * fontSize;
+
+          ctx.globalAlpha = Math.random() * 0.6 + 0.2;
+          ctx.fillText(char, x, y);
+
+          if (y > H && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+        ctx.globalAlpha = 1;
+        animationId = requestAnimationFrame(drawWelcomeMatrix);
+      }
+
+      initWelcomeMatrix();
+      drawWelcomeMatrix();
+      window.addEventListener('resize', initWelcomeMatrix);
+
+      // Stop animation when overlay hides
+      const observer = new MutationObserver(() => {
+        if (overlay.classList.contains('hidden')) {
+          cancelAnimationFrame(animationId);
+        }
+      });
+      observer.observe(overlay, { attributes: true });
+    }
+
+    // Start animation on page load
+    setTimeout(startAnimation, 300);
+  })();
+
   // ───── Auto B.Tech Year Calculator (IST / Guntur time) ─────
   // Academic year increments every July 1st.
   // Schedule: 3rd Year → July 2026: 4th Year → July 2027+: Completed in 2028 • Kakinada
@@ -217,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ───── Gorgeous Button Ripple Effect ─────
   document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
+    btn.addEventListener('click', function (e) {
       const ripple = document.createElement('span');
       ripple.classList.add('ripple');
       const rect = this.getBoundingClientRect();
@@ -260,9 +355,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const heroCta = heroContent.querySelector('.hero-cta');
 
       if (heroTitle) heroTitle.style.transform = `translate(${x * 20}px, ${y * 12}px)`;
-      if (heroTag)   heroTag.style.transform   = `translate(${x * 10}px, ${y * 6}px)`;
-      if (heroSub)   heroSub.style.transform   = `translate(${x * 14}px, ${y * 8}px)`;
-      if (heroCta)   heroCta.style.transform   = `translate(${x * 6}px, ${y * 4}px)`;
+      if (heroTag) heroTag.style.transform = `translate(${x * 10}px, ${y * 6}px)`;
+      if (heroSub) heroSub.style.transform = `translate(${x * 14}px, ${y * 8}px)`;
+      if (heroCta) heroCta.style.transform = `translate(${x * 6}px, ${y * 4}px)`;
     });
 
     hero.addEventListener('mouseleave', () => {
@@ -381,7 +476,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   document.querySelectorAll('.btn, .social-btn, .nav-link, .project-link').forEach(el => {
-    el.addEventListener('click', function(e) {
+    el.addEventListener('click', function (e) {
       const rect = this.getBoundingClientRect();
       const cx = e.clientX - rect.left;
       const cy = e.clientY - rect.top;
@@ -413,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ───── Nav Link Click Glow Flash ─────
   document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function() {
+    link.addEventListener('click', function () {
       this.style.textShadow = '0 0 20px rgba(0,240,255,.8), 0 0 40px rgba(0,240,255,.4)';
       setTimeout(() => {
         this.style.textShadow = '';

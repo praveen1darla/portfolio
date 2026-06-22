@@ -8,15 +8,15 @@
   position: fixed;
   bottom: 28px;
   right: 28px;
-  width: 80px;
-  height: 80px;
+  width: 65px;
+  height: 65px;
   background: linear-gradient(135deg, #ff1744, #b71c1c);
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 1px;
   cursor: pointer;
   z-index: 9998;
   box-shadow: 0 4px 20px rgba(255, 23, 68, .4), 0 0 30px rgba(255, 23, 68, .15), 0 0 60px rgba(255, 23, 68, .1);
@@ -47,7 +47,7 @@
 
 #cyberguard-btn .btn-text {
   font-family: 'Orbitron', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.55rem;
   font-weight: 700;
   color: #fff;
   text-shadow: 0 0 8px rgba(255, 255, 255, .6), 0 0 15px rgba(255, 23, 68, .4);
@@ -55,7 +55,7 @@
   gap: 1px;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 70px;
+  max-width: 60px;
   z-index: 1;
 }
 
@@ -94,9 +94,10 @@
   background: linear-gradient(135deg, #424242, #212121);
   box-shadow: 0 4px 16px rgba(0, 0, 0, .4);
   animation: none;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   gap: 0;
+  border-radius: 50%;
 }
 
 #cyberguard-btn.cg-active .btn-text {
