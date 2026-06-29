@@ -45,6 +45,17 @@
     .topic-detail h3 { font-family:var(--font-display); font-size:1.8rem; }
     .topic-detail ul { margin-top:14px; padding-left:20px; }
     .robotics-cta { text-align:center; padding: 70px 24px; border-radius:34px; background:linear-gradient(135deg, rgba(56,213,255,.13), rgba(121,242,192,.09)); border:1px solid rgba(255,255,255,.12); }
+
+    .robotics-section-title { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    .heading-symbol { width:58px; height:58px; flex:0 0 auto; display:inline-grid; place-items:center; border-radius:20px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.075); font-size:1.45rem; color:#bff8ff; box-shadow:0 0 32px rgba(122,245,255,.18); }
+    .symbol-scan { animation: symbolScan 2.4s ease-in-out infinite; }
+    .symbol-arm { color:#ffd27a; animation: symbolArm 2.2s ease-in-out infinite; }
+    .symbol-ai { color:#d9c4ff; animation: symbolBrain 2.8s ease-in-out infinite; }
+    .symbol-link { color:#9dffc7; animation: symbolPulse 2.1s ease-in-out infinite; }
+    @keyframes symbolScan { 0%,100%{transform:translateX(0); box-shadow:0 0 20px rgba(122,245,255,.15)} 50%{transform:translateX(8px); box-shadow:0 0 42px rgba(122,245,255,.36)} }
+    @keyframes symbolArm { 0%,100%{transform:rotate(-6deg)} 50%{transform:rotate(9deg) translateY(-4px)} }
+    @keyframes symbolBrain { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12); box-shadow:0 0 44px rgba(217,196,255,.34)} }
+    @keyframes symbolPulse { 0%,100%{transform:scale(1); opacity:.9} 50%{transform:scale(1.1); opacity:1} }
     @media (max-width: 920px) { .robotics-hero-grid, .robotics-card-grid { grid-template-columns:1fr; } .topic-grid { grid-template-columns:repeat(2,1fr); } }
     @media (max-width: 560px) { .robotics-metrics, .topic-grid { grid-template-columns:1fr; } .robotics-nav { align-items:flex-start; flex-direction:column; } }
   </style>
@@ -85,7 +96,7 @@
 
       <section class="robotics-section" id="domain">
         <div class="container">
-          <h2 class="robotics-section-title">Domain Overview</h2>
+          <h2 class="robotics-section-title"><span class="heading-symbol symbol-scan"><i class="fas fa-satellite-dish"></i></span> Domain Overview</h2>
           <p class="section-desc" style="text-align:left;margin-left:0">My robotics domain focuses on converting raw sensor data into reliable navigation intelligence for autonomous machines.</p>
           <div class="robotics-card-grid">
             <article class="robotics-info-card"><i class="fas fa-cubes"></i><h3>3D Point Cloud Mapping</h3><p>Using LiDAR data to represent the environment in 3D so the robot can understand obstacles, free space, and terrain structure.</p></article>
@@ -98,7 +109,7 @@
 
       <section class="robotics-section section-alt" id="project">
         <div class="container">
-          <h2 class="robotics-section-title">Project: 3D LiDAR Navigation Architecture</h2>
+          <h2 class="robotics-section-title"><span class="heading-symbol symbol-arm"><i class="fas fa-robot"></i></span> Project: 3D LiDAR Navigation Architecture</h2>
           <p class="robotics-lead">This project integrates ROS 2, LIO-SAM, OctoMap, EKF fusion, RViz2, and navigation logic to build a rover system capable of mapping, localization, obstacle detection, and waypoint movement.</p>
           <div class="robotics-card-grid">
             <article class="robotics-info-card"><h3>Problem</h3><p>Robots need accurate environment awareness before they can navigate safely in real-world or lab conditions.</p></article>
@@ -111,7 +122,7 @@
 
       <section class="robotics-section" id="topics">
         <div class="container">
-          <h2 class="robotics-section-title">Click Any Technology</h2>
+          <h2 class="robotics-section-title"><span class="heading-symbol symbol-ai"><i class="fas fa-brain"></i></span> Click Any Technology</h2>
           <p class="robotics-lead">Select a topic to see what it is, why it is used, advantages, and where it fits in my project.</p>
           <div class="topic-grid">
             <button class="topic-btn active" data-topic="ros2"><strong>ROS 2</strong><span>Robot software framework</span></button>
@@ -131,7 +142,7 @@
       <section class="robotics-section" id="contact">
         <div class="container robotics-cta">
           <p class="robotics-kicker">Interested in robotics, cybersecurity, or secure AI systems?</p>
-          <h2 class="robotics-section-title">Let’s Discuss a Project</h2>
+          <h2 class="robotics-section-title"><span class="heading-symbol symbol-link"><i class="fas fa-handshake"></i></span> Let’s Discuss a Project</h2>
           <p class="robotics-lead" style="margin:auto">I am available for collaboration, project discussions, robotics lab work, and secure software development opportunities.</p>
           <div class="section-next-actions">
             <a class="mini-return-btn" href="tel:7989846814"><i class="fas fa-phone"></i> 7989846814</a>

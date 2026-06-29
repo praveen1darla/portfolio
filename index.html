@@ -31,38 +31,6 @@
     </div>
   </div>
 
-  <div class="experience-portal" id="experiencePortal" aria-hidden="true" role="dialog" aria-label="Choose portfolio section">
-    <div class="portal-backdrop"></div>
-    <div class="portal-panel">
-      <p class="portal-eyebrow">Cybersecurity, Robotics & AI Engineering</p>
-      <h2>Choose your professional path</h2>
-      <p class="portal-copy">Select one focused section. About shows my complete profile, Cybersecurity Projects shows my three security/web projects, and Robotics & AI opens a separate premium domain page.</p>
-      <div class="portal-actions portal-actions--three">
-        <button class="portal-btn portal-btn-about" data-target="#about">
-          <i class="fas fa-user-tie"></i>
-          <span>About</span>
-          <small>Profile, education, skills, collaboration status</small>
-        </button>
-        <button class="portal-btn portal-btn-cyber" data-target="#projects">
-          <i class="fas fa-shield-halved"></i>
-          <span>Cybersecurity Projects</span>
-          <small>Threat hunting, AI chatbot, file converter</small>
-        </button>
-        <a class="portal-btn portal-btn-robotics" href="robotics.html">
-          <span class="robotic-symbols" aria-hidden="true">
-            <span class="bot-head"><i class="fas fa-robot"></i></span>
-            <span class="bot-arm"><i class="fas fa-hand-fist"></i></span>
-            <span class="bot-leg"><i class="fas fa-shoe-prints"></i></span>
-            <span class="ai-orbit"><i class="fas fa-brain"></i></span>
-          </span>
-          <i class="fas fa-robot main-robot-icon"></i>
-          <span>Robotics & AI</span>
-          <small>Separate domain page with demo video, ROS 2, LIO-SAM, OctoMap, SLAM</small>
-        </a>
-      </div>
-    </div>
-  </div>
-
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" id="navbar">
     <a href="#home" class="nav-logo">
@@ -96,6 +64,35 @@
     <div class="scroll-indicator">
       <span>Scroll Down</span>
       <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ========== CHOOSE PATH ========== -->
+  <section class="path-section" id="choose-path">
+    <div class="container">
+      <p class="path-eyebrow">Select one focused experience</p>
+      <h2 class="path-title">Choose Your Path</h2>
+      <p class="path-copy">Before the full portfolio opens, choose what you want to see first.</p>
+      <div class="path-grid">
+        <a class="path-card path-card-about" href="#about">
+          <div class="path-icon"><i class="fas fa-user-tie"></i></div>
+          <h3>About</h3>
+          <p>Profile, education, skills, location, collaboration status, and professional summary.</p>
+          <span>Open About <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a class="path-card path-card-cyber" href="#projects">
+          <div class="path-icon"><i class="fas fa-shield-halved"></i></div>
+          <h3>Cybersecurity Projects</h3>
+          <p>Threat hunting system, CyberGuard AI chatbot, and universal file converter projects.</p>
+          <span>View Projects <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a class="path-card path-card-robotics" href="robotics.html">
+          <div class="path-icon"><i class="fas fa-robot"></i></div>
+          <h3>Robotics & AI</h3>
+          <p>Separate premium robotics domain page with demo video, ROS 2, LIO-SAM, OctoMap, and SLAM.</p>
+          <span>Open Robotics Page <i class="fas fa-arrow-right"></i></span>
+        </a>
+      </div>
     </div>
   </section>
 
