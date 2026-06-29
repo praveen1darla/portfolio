@@ -190,12 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const typedEl = document.getElementById('typedText');
   if (typedEl) {
     const phrases = [
-      'Cybersecurity Engineer in Progress',
-      'Robotics & ROS 2 Developer',
-      'Secure Web Systems Builder',
-      '3D Mapping & SLAM Researcher',
-      'AI-Assisted Product Developer',
-      'Linux & Network Security Practitioner'
+      'Cybersecurity Engineering',
+      'Robotics and ROS 2 Systems',
+      'Secure Web Application Engineering',
+      '3D Mapping and SLAM Architecture',
+      'AI-Integrated Software Systems',
+      'Linux and Network Security'
     ];
     let phraseIdx = 0;
     let charIdx = 0;
