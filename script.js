@@ -6,99 +6,14 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ───── Welcome Animation Overlay (Simplified) ─────
-  (function welcomeAnimation() {
-    const overlay = document.getElementById('welcomeOverlay');
-    const welcomeWords = document.querySelectorAll('.welcome-word');
-    const scrollHint = document.getElementById('scrollHint');
+  // ───── Hero Word Animation ─────
+  (function heroWordAnimation() {
+    const heroWords = document.querySelectorAll('.hero-word');
+    if (!heroWords.length) return;
 
-    if (!overlay || !welcomeWords.length) return;
-
-    let animationStarted = false;
-
-    function resetAnimation() {
-      overlay.classList.remove('hidden');
-      welcomeWords.forEach(word => {
-        word.classList.remove('animate-in');
-      });
-      scrollHint.classList.remove('show');
-    }
-
-    function startAnimation() {
-      if (animationStarted) return;
-      animationStarted = true;
-      resetAnimation();
-
-      // Animate welcome words in quickly
-      welcomeWords.forEach((word, index) => {
-        setTimeout(() => word.classList.add('animate-in'), index * 60);
-      });
-
-      // Show scroll hint after 1 second
-      setTimeout(() => {
-        scrollHint.classList.add('show');
-      }, 1000);
-
-      // Keep the main professional heading visible, then allow user to scroll to path buttons.
-      setTimeout(() => {
-        overlay.classList.add('hidden');
-      }, 5000);
-    }
-
-    // Matrix rain for welcome overlay
-    const welcomeCanvas = document.getElementById('welcomeMatrixCanvas');
-    if (welcomeCanvas) {
-      const ctx = welcomeCanvas.getContext('2d');
-      let W, H, columns, drops;
-      const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ';
-      const fontSize = 14;
-      let animationId;
-
-      function initWelcomeMatrix() {
-        W = welcomeCanvas.width = window.innerWidth;
-        H = welcomeCanvas.height = window.innerHeight;
-        columns = Math.floor(W / fontSize);
-        drops = Array.from({ length: columns }, () => Math.random() * -100);
-      }
-
-      function drawWelcomeMatrix() {
-        ctx.fillStyle = 'rgba(10, 14, 23, 0.05)';
-        ctx.fillRect(0, 0, W, H);
-        ctx.fillStyle = '#00f0ff';
-        ctx.font = `${fontSize}px 'Share Tech Mono', monospace`;
-
-        for (let i = 0; i < columns; i++) {
-          const char = chars[Math.floor(Math.random() * chars.length)];
-          const x = i * fontSize;
-          const y = drops[i] * fontSize;
-
-          ctx.globalAlpha = Math.random() * 0.6 + 0.2;
-          ctx.fillText(char, x, y);
-
-          if (y > H && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          drops[i]++;
-        }
-        ctx.globalAlpha = 1;
-        animationId = requestAnimationFrame(drawWelcomeMatrix);
-      }
-
-      initWelcomeMatrix();
-      drawWelcomeMatrix();
-      window.addEventListener('resize', initWelcomeMatrix);
-
-      // Stop animation when overlay hides
-      const observer = new MutationObserver(() => {
-        if (overlay.classList.contains('hidden')) {
-          cancelAnimationFrame(animationId);
-        }
-      });
-      observer.observe(overlay, { attributes: true });
-    }
-
-    // Start animation on page load
-    setTimeout(startAnimation, 300);
+    heroWords.forEach((word, index) => {
+      word.style.animationDelay = `${index * 0.15 + 0.3}s`;
+    });
   })();
 
   // ───── Auto B.Tech Year Calculator (IST / Guntur time) ─────
@@ -535,6 +450,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoModal = document.getElementById('roboticsVideoModal');
   const modalVideo = document.getElementById('roboticsModalVideo');
   const videoTriggers = document.querySelectorAll('.project-video-trigger');
+  // For robotics.html video
+  const roboticsPageVideo = document.getElementById('roboticsPageVideo');
   let closeTimer = null;
 
   function openRoboticsVideo(src) {
@@ -583,6 +500,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (modalVideo) {
     modalVideo.addEventListener('ended', closeRoboticsVideo);
+    modalVideo.addEventListener('play', () => {
+      videoModal.classList.add('video-playing');
+    });
+    modalVideo.addEventListener('pause', () => {
+      videoModal.classList.remove('video-playing');
+    });
+  }
+
+  // Handle robotics.html video
+  if (roboticsPageVideo) {
+    roboticsPageVideo.addEventListener('play', () => {
+      roboticsPageVideo.closest('.video-frame')?.classList.add('video-playing');
+      document.body.classList.add('robotics-video-playing');
+    });
+    roboticsPageVideo.addEventListener('pause', () => {
+      roboticsPageVideo.closest('.video-frame')?.classList.remove('video-playing');
+      document.body.classList.remove('robotics-video-playing');
+    });
   }
 
 });

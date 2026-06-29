@@ -1,65 +1,794 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DARLA PRAVEEN | Robotics Engineering Domain</title>
-  <meta name="description" content="Robotics engineering domain page for DARLA PRAVEEN with ROS 2, LIO-SAM, OctoMap, SLAM, 3D LiDAR mapping, navigation, and project demo." />
+  <meta name="description"
+    content="Robotics engineering domain page for DARLA PRAVEEN with ROS 2, LIO-SAM, OctoMap, SLAM, 3D LiDAR mapping, navigation, and project demo." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="chatbot.css" />
   <style>
-    body.robotics-page { min-height: 100vh; }
-    .robotics-shell { position: relative; overflow: hidden; }
-    .robotics-shell::before { content:''; position: fixed; inset:0; pointer-events:none; background: radial-gradient(circle at 80% 10%, rgba(56,213,255,.22), transparent 28%), radial-gradient(circle at 10% 50%, rgba(121,242,192,.13), transparent 32%); }
-    .robotics-nav { position: sticky; top: 0; z-index: 30; display:flex; align-items:center; justify-content:space-between; gap:16px; padding: 18px clamp(18px, 5vw, 70px); background: rgba(6,11,22,.72); backdrop-filter: blur(18px); border-bottom:1px solid rgba(255,255,255,.1); }
-    .robotics-brand { font-family: var(--font-display); font-weight:900; letter-spacing:-.03em; color:#fff; }
-    .return-chip { display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid rgba(56,213,255,.3); background:rgba(56,213,255,.09); color:#e9fbff; font-weight:900; }
-    .robotics-hero { min-height: 92vh; display:grid; align-items:center; padding: clamp(80px, 11vw, 150px) 0; }
-    .robotics-hero-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap: 34px; align-items:center; }
-    .robotics-kicker { color: var(--neon-green); font-weight:900; text-transform:uppercase; letter-spacing:.18em; }
-    .robotics-title { font-family:var(--font-display); font-size: clamp(3.2rem, 8vw, 7rem); line-height:.9; letter-spacing:-.075em; margin: 16px 0; background:linear-gradient(100deg,#fff,#bff3ff,#92ffd0); -webkit-background-clip:text; color:transparent; }
-    .robotics-lead { font-size: clamp(1.08rem, 1.8vw, 1.35rem); color: var(--text-secondary); max-width: 760px; }
-    .robotics-metrics { display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:30px; }
-    .metric-card { padding:18px; border-radius:20px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); }
-    .metric-card strong { display:block; font-family:var(--font-display); font-size:1.8rem; color:#fff; }
-    .metric-card span { color:var(--text-secondary); font-weight:700; }
-    .robotics-visual { border-radius:34px; border:1px solid rgba(255,255,255,.12); background:linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.03)); box-shadow:0 40px 120px rgba(0,0,0,.35); padding:22px; }
-    .video-frame { border-radius:24px; overflow:hidden; border:1px solid rgba(56,213,255,.24); background:#020712; }
-    .video-frame video { width:100%; display:block; aspect-ratio:16/10; object-fit:cover; }
-    .robotics-section { padding: clamp(80px, 9vw, 125px) 0; position:relative; }
-    .robotics-section-title { font-family:var(--font-display); font-size:clamp(2.1rem,5vw,4.3rem); line-height:1; letter-spacing:-.055em; margin-bottom:18px; }
-    .robotics-card-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:32px; }
-    .robotics-info-card { padding:24px; border-radius:24px; background:rgba(255,255,255,.065); border:1px solid rgba(255,255,255,.1); box-shadow:0 24px 70px rgba(0,0,0,.25); }
-    .robotics-info-card i { color:var(--neon-cyan); font-size:1.8rem; }
-    .robotics-info-card h3 { font-family:var(--font-display); margin:16px 0 10px; }
-    .robotics-info-card p, .topic-detail p, .topic-detail li { color:var(--text-secondary); }
-    .topic-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:14px; margin-top:28px; }
-    .topic-btn { min-height:118px; padding:18px; border-radius:20px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.06); color:#fff; text-align:left; cursor:pointer; transition:var(--transition); }
-    .topic-btn:hover, .topic-btn.active { transform:translateY(-6px); border-color:rgba(56,213,255,.48); box-shadow:var(--accent-glow); background:rgba(56,213,255,.10); }
-    .topic-btn strong { display:block; font-family:var(--font-display); margin-bottom:8px; }
-    .topic-btn span { color:var(--text-secondary); font-size:.92rem; }
-    .topic-detail { margin-top:22px; padding:28px; border-radius:26px; border:1px solid rgba(121,242,192,.18); background:linear-gradient(145deg, rgba(56,213,255,.10), rgba(255,255,255,.045)); }
-    .topic-detail h3 { font-family:var(--font-display); font-size:1.8rem; }
-    .topic-detail ul { margin-top:14px; padding-left:20px; }
-    .robotics-cta { text-align:center; padding: 70px 24px; border-radius:34px; background:linear-gradient(135deg, rgba(56,213,255,.13), rgba(121,242,192,.09)); border:1px solid rgba(255,255,255,.12); }
+    body.robotics-page {
+      min-height: 100vh;
+    }
 
-    .robotics-section-title { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
-    .heading-symbol { width:58px; height:58px; flex:0 0 auto; display:inline-grid; place-items:center; border-radius:20px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.075); font-size:1.45rem; color:#bff8ff; box-shadow:0 0 32px rgba(122,245,255,.18); }
-    .symbol-scan { animation: symbolScan 2.4s ease-in-out infinite; }
-    .symbol-arm { color:#ffd27a; animation: symbolArm 2.2s ease-in-out infinite; }
-    .symbol-ai { color:#d9c4ff; animation: symbolBrain 2.8s ease-in-out infinite; }
-    .symbol-link { color:#9dffc7; animation: symbolPulse 2.1s ease-in-out infinite; }
-    @keyframes symbolScan { 0%,100%{transform:translateX(0); box-shadow:0 0 20px rgba(122,245,255,.15)} 50%{transform:translateX(8px); box-shadow:0 0 42px rgba(122,245,255,.36)} }
-    @keyframes symbolArm { 0%,100%{transform:rotate(-6deg)} 50%{transform:rotate(9deg) translateY(-4px)} }
-    @keyframes symbolBrain { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12); box-shadow:0 0 44px rgba(217,196,255,.34)} }
-    @keyframes symbolPulse { 0%,100%{transform:scale(1); opacity:.9} 50%{transform:scale(1.1); opacity:1} }
-    @media (max-width: 920px) { .robotics-hero-grid, .robotics-card-grid { grid-template-columns:1fr; } .topic-grid { grid-template-columns:repeat(2,1fr); } }
-    @media (max-width: 560px) { .robotics-metrics, .topic-grid { grid-template-columns:1fr; } .robotics-nav { align-items:flex-start; flex-direction:column; } }
+    .robotics-shell {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .robotics-shell::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 80% 10%, rgba(56, 213, 255, .22), transparent 28%), radial-gradient(circle at 10% 50%, rgba(121, 242, 192, .13), transparent 32%);
+    }
+
+    .robotics-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px clamp(18px, 5vw, 70px);
+      background: rgba(6, 11, 22, .72);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .robotics-brand {
+      font-family: var(--font-display);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      color: #fff;
+    }
+
+    .return-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 213, 255, .3);
+      background: rgba(56, 213, 255, .09);
+      color: #e9fbff;
+      font-weight: 900;
+    }
+
+    .robotics-hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: center;
+      padding: clamp(80px, 11vw, 150px) 0;
+    }
+
+    .robotics-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: flex-start;
+      text-align: center;
+    }
+
+    .robotics-profile-card {
+      background: linear-gradient(145deg, rgba(20, 25, 35, 0.95), rgba(15, 20, 30, 0.98));
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-radius: 24px;
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      width: 360px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .robotics-photo-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: .1em;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .robotics-photo-role {
+      font-size: 0.95rem;
+      color: var(--neon-cyan);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .robotics-photo-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .robotics-status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #2ecc71;
+      box-shadow: 0 0 10px rgba(46, 204, 113, 0.8);
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+
+      0%,
+      100% {
+        box-shadow: 0 0 10px rgba(46, 204, 113, 0.8);
+      }
+
+      50% {
+        box-shadow: 0 0 20px rgba(46, 204, 113, 1);
+      }
+    }
+
+    .robotics-photo-location {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .robotics-photo-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .robotics-photo-contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(0, 240, 255, 0.05);
+      border: 1px solid rgba(0, 240, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .robotics-photo-contact-item:hover {
+      color: var(--neon-cyan);
+      background: rgba(0, 240, 255, 0.1);
+      border-color: var(--neon-cyan);
+    }
+
+    .robotics-photo-socials {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .robotics-photo-socials a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--neon-cyan);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .robotics-photo-socials a:hover {
+      background: var(--neon-cyan);
+      color: #0a0f1a;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+    }
+
+    /* Watch Demo Button */
+    .watch-demo-button {
+      position: relative;
+      padding: 18px 45px;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      letter-spacing: .15em;
+      color: #fff;
+      background: rgba(0, 240, 255, 0.1);
+      border: 2px solid var(--neon-cyan);
+      border-radius: 14px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      text-transform: uppercase;
+      box-shadow:
+        0 0 15px rgba(0, 240, 255, 0.6),
+        0 0 30px rgba(0, 240, 255, 0.4),
+        0 0 45px rgba(0, 240, 255, 0.2);
+      animation: buttonGlowPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes buttonGlowPulse {
+
+      0%,
+      100% {
+        box-shadow:
+          0 0 15px rgba(0, 240, 255, 0.6),
+          0 0 30px rgba(0, 240, 255, 0.4),
+          0 0 45px rgba(0, 240, 255, 0.2);
+      }
+
+      50% {
+        box-shadow:
+          0 0 30px rgba(0, 240, 255, 0.8),
+          0 0 60px rgba(0, 240, 255, 0.6),
+          0 0 90px rgba(57, 255, 20, 0.4);
+      }
+    }
+
+    .watch-demo-text {
+      position: relative;
+      z-index: 3;
+      text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+      animation: textPulse 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes textPulse {
+      0% {
+        text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+      }
+
+      100% {
+        text-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan), 0 0 60px var(--neon-green);
+      }
+    }
+
+    .watch-demo-button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(var(--neon-cyan),
+          var(--neon-green),
+          var(--neon-blue),
+          var(--neon-cyan));
+      animation: rotateGlow 4s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes rotateGlow {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .watch-demo-button::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: rgba(10, 14, 23, 0.95);
+      border-radius: 12px;
+      z-index: -1;
+    }
+
+    .watch-demo-shine {
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+      animation: shine 2s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes shine {
+      0% {
+        left: -150%;
+        transform: skewX(-25deg);
+      }
+
+      100% {
+        left: 150%;
+        transform: skewX(-25deg);
+      }
+    }
+
+    .watch-demo-button:hover {
+      transform: translateY(-6px) scale(1.08);
+      box-shadow:
+        0 15px 60px rgba(0, 240, 255, 0.9),
+        0 0 120px rgba(0, 240, 255, 0.6),
+        0 0 180px rgba(57, 255, 20, 0.5);
+      border-color: var(--neon-green);
+    }
+
+    .watch-demo-button:hover::before {
+      animation-duration: 1.5s;
+    }
+
+    .watch-demo-button:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* Project Video Container */
+    .project-video-container,
+    .project-video-container *,
+    .project-video-container *::before,
+    .project-video-container *::after {
+      filter: none !important;
+      backdrop-filter: none !important;
+      -webkit-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    .project-video-container {
+      margin-top: 40px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      animation: fadeInUp 0.5s ease;
+      position: relative;
+      z-index: 9999 !important;
+    }
+
+    .project-video-frame {
+      position: relative;
+      z-index: 10000 !important;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .project-video-frame {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid var(--neon-cyan);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-close-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(57, 255, 20, 0.3));
+      border: 2px solid var(--neon-cyan);
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .project-close-button:hover {
+      background: var(--neon-cyan);
+      color: #0a0f1a;
+      transform: rotate(90deg) scale(1.1);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
+    }
+
+    .project-video-frame video {
+      width: 100%;
+      display: block;
+      filter: none !important;
+      backdrop-filter: none !important;
+    }
+
+    .project-video-frame.video-playing {
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.8), 0 0 60px rgba(57, 255, 20, 0.6);
+      transform: scale(1.02);
+      transition: all 0.3s ease;
+    }
+
+    body.robotics-video-playing,
+    body.robotics-video-playing::before {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      filter: none !important;
+      -webkit-filter: none !important;
+      background: transparent !important;
+    }
+
+    .robotics-kicker {
+      color: var(--neon-green);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+
+    .robotics-main-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 7vw, 6rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0 0 20px 0;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green), var(--neon-blue));
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(0, 240, 255, 0.7), 0 0 60px rgba(0, 240, 255, 0.5), 0 0 90px rgba(0, 240, 255, 0.3);
+      animation: mainTitleGlow 2.5s ease-in-out infinite alternate;
+      white-space: nowrap;
+    }
+
+    .robotics-lab-desc {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0 0 24px 0;
+      padding: 16px 20px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(57, 255, 20, 0.05));
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
+
+    .robotics-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin: 10px 0 16px 0;
+      background: linear-gradient(100deg, #fff, #bff3ff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    @keyframes mainTitleGlow {
+      0% {
+        text-shadow: 0 0 30px rgba(0, 240, 255, 0.7), 0 0 60px rgba(0, 240, 255, 0.5), 0 0 90px rgba(0, 240, 255, 0.3);
+      }
+
+      100% {
+        text-shadow: 0 0 50px rgba(0, 240, 255, 1), 0 0 100px rgba(0, 240, 255, 0.7), 0 0 150px rgba(0, 240, 255, 0.5);
+      }
+    }
+
+    .robotics-lead {
+      font-size: clamp(1.08rem, 1.8vw, 1.35rem);
+      color: var(--text-secondary);
+      max-width: 760px;
+    }
+
+    .robotics-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .metric-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .metric-card strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: #fff;
+    }
+
+    .metric-card span {
+      color: var(--text-secondary);
+      font-weight: 700;
+    }
+
+    .robotics-visual {
+      border-radius: 34px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: linear-gradient(145deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .03));
+      box-shadow: 0 40px 120px rgba(0, 0, 0, .35);
+      padding: 22px;
+    }
+
+    .video-frame {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 3px solid transparent;
+      background: linear-gradient(#020712, #020712) padding-box, linear-gradient(90deg, var(--neon-green), var(--neon-cyan), var(--neon-purple), var(--neon-blue)) border-box;
+      animation: glowingBorder 2s ease-in-out infinite;
+    }
+
+    .video-frame video {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+    }
+
+    .robotics-section {
+      padding: clamp(80px, 9vw, 125px) 0;
+      position: relative;
+    }
+
+    .robotics-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 5vw, 4.3rem);
+      line-height: 1;
+      letter-spacing: -.055em;
+      margin-bottom: 18px;
+    }
+
+    .robotics-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 32px;
+    }
+
+    .robotics-info-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .065);
+      border: 1px solid rgba(255, 255, 255, .1);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .25);
+    }
+
+    .robotics-info-card i {
+      color: var(--neon-cyan);
+      font-size: 1.8rem;
+    }
+
+    .robotics-info-card h3 {
+      font-family: var(--font-display);
+      margin: 16px 0 10px;
+    }
+
+    .robotics-info-card p,
+    .topic-detail p,
+    .topic-detail li {
+      color: var(--text-secondary);
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .topic-btn {
+      min-height: 118px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(255, 255, 255, .06);
+      color: #fff;
+      text-align: left;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .topic-btn:hover,
+    .topic-btn.active {
+      transform: translateY(-6px);
+      border-color: rgba(56, 213, 255, .48);
+      box-shadow: var(--accent-glow);
+      background: rgba(56, 213, 255, .10);
+    }
+
+    .topic-btn strong {
+      display: block;
+      font-family: var(--font-display);
+      margin-bottom: 8px;
+    }
+
+    .topic-btn span {
+      color: var(--text-secondary);
+      font-size: .92rem;
+    }
+
+    .topic-detail {
+      margin-top: 22px;
+      padding: 28px;
+      border-radius: 26px;
+      border: 1px solid rgba(121, 242, 192, .18);
+      background: linear-gradient(145deg, rgba(56, 213, 255, .10), rgba(255, 255, 255, .045));
+    }
+
+    .topic-detail h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+    }
+
+    .topic-detail ul {
+      margin-top: 14px;
+      padding-left: 20px;
+    }
+
+    .robotics-cta {
+      text-align: center;
+      padding: 70px 24px;
+      border-radius: 34px;
+      background: linear-gradient(135deg, rgba(56, 213, 255, .13), rgba(121, 242, 192, .09));
+      border: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .robotics-section-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .heading-symbol {
+      width: 58px;
+      height: 58px;
+      flex: 0 0 auto;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .075);
+      font-size: 1.45rem;
+      color: #bff8ff;
+      box-shadow: 0 0 32px rgba(122, 245, 255, .18);
+    }
+
+    .symbol-scan {
+      animation: symbolScan 2.4s ease-in-out infinite;
+    }
+
+    .symbol-arm {
+      color: #ffd27a;
+      animation: symbolArm 2.2s ease-in-out infinite;
+    }
+
+    .symbol-ai {
+      color: #d9c4ff;
+      animation: symbolBrain 2.8s ease-in-out infinite;
+    }
+
+    .symbol-link {
+      color: #9dffc7;
+      animation: symbolPulse 2.1s ease-in-out infinite;
+    }
+
+    @keyframes symbolScan {
+
+      0%,
+      100% {
+        transform: translateX(0);
+        box-shadow: 0 0 20px rgba(122, 245, 255, .15)
+      }
+
+      50% {
+        transform: translateX(8px);
+        box-shadow: 0 0 42px rgba(122, 245, 255, .36)
+      }
+    }
+
+    @keyframes symbolArm {
+
+      0%,
+      100% {
+        transform: rotate(-6deg)
+      }
+
+      50% {
+        transform: rotate(9deg) translateY(-4px)
+      }
+    }
+
+    @keyframes symbolBrain {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.12);
+        box-shadow: 0 0 44px rgba(217, 196, 255, .34)
+      }
+    }
+
+    @keyframes symbolPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .9
+      }
+
+      50% {
+        transform: scale(1.1);
+        opacity: 1
+      }
+    }
+
+    @keyframes glowingBorder {
+
+      0%,
+      100% {
+        box-shadow: 0 0 15px rgba(57, 255, 20, .4), 0 0 30px rgba(0, 240, 255, .2);
+      }
+
+      50% {
+        box-shadow: 0 0 30px rgba(57, 255, 20, .6), 0 0 60px rgba(0, 240, 255, .4);
+      }
+    }
+
+    @media (max-width: 920px) {
+      .robotics-hero-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+
+      .robotics-profile-card {
+        margin: 0 auto;
+        max-width: 350px;
+      }
+
+      .robotics-card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topic-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+
+      .robotics-metrics,
+      .topic-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .robotics-nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .robotics-profile-card {
+        padding: 16px;
+      }
+
+      .robotics-photo-frame {
+        width: 130px;
+        height: 130px;
+      }
+    }
   </style>
 </head>
+
 <body class="robotics-page">
   <div class="robotics-shell">
     <nav class="robotics-nav">
@@ -73,19 +802,100 @@
     <main>
       <section class="robotics-hero">
         <div class="container robotics-hero-grid">
-          <div>
+          <!-- Text Content -->
+          <div class="robotics-text-content">
+            <h1 class="robotics-main-title">KRL ROBOTICS LAB</h1>
+            <p class="robotics-lab-desc">I am a proud to be member of KRL Robotics Lab, located at KIET College in
+              Kakinada.
+              This dynamic lab serves as a hub for innovation, where we explore cutting-edge robotics technologies,
+              build autonomous systems, and work on projects that bridge the gap between theory and real-world
+              applications.</p>
             <p class="robotics-kicker">ROS 2 • 3D LiDAR • SLAM • Autonomous Navigation</p>
-            <h1 class="robotics-title">Robotics Engineering Domain</h1>
-            <p class="robotics-lead">A dedicated technical presentation of my robotics work: 3D point cloud mapping, localization, obstacle awareness, autonomous waypoint navigation, and custom ROS 2 architecture for real-world rover systems.</p>
+            <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;text-align:left;">
+              <div style="width:4px;height:120px;background:linear-gradient(to bottom, var(--neon-cyan), var(--neon-green));border-radius:999px;flex-shrink:0;"></div>
+              <div>
+                <h2 class="robotics-subtitle" style="margin-bottom:8px;">Robotics Engineering Domain</h2>
+                <p class="robotics-lead" style="margin-bottom:0;">A dedicated technical presentation of my robotics work: 3D point cloud mapping,
+                  localization, obstacle awareness, autonomous waypoint navigation, and custom ROS 2 architecture for
+                  real-world rover systems.</p>
+              </div>
+            </div>
             <div class="robotics-metrics">
               <div class="metric-card"><strong>3D</strong><span>LiDAR perception</span></div>
               <div class="metric-card"><strong>ROS 2</strong><span>system architecture</span></div>
               <div class="metric-card"><strong>SLAM</strong><span>mapping and localization</span></div>
             </div>
           </div>
-          <div class="robotics-visual">
-            <div class="video-frame" id="demo">
-              <video controls preload="metadata" poster="profile.png">
+
+        </div>
+      </section>
+
+      <section class="robotics-section" id="domain">
+        <div class="container">
+          <h2 class="robotics-section-title"><span class="heading-symbol symbol-scan"><i
+                class="fas fa-satellite-dish"></i></span> Domain Overview</h2>
+          <p class="section-desc" style="text-align:left;margin-left:0">My robotics domain focuses on converting raw
+            sensor data into reliable navigation intelligence for autonomous machines.</p>
+          <div class="robotics-card-grid">
+            <article class="robotics-info-card"><i class="fas fa-cubes"></i>
+              <h3>3D Point Cloud Mapping</h3>
+              <p>Using LiDAR data to represent the environment in 3D so the robot can understand obstacles, free space,
+                and terrain structure.</p>
+            </article>
+            <article class="robotics-info-card"><i class="fas fa-route"></i>
+              <h3>Autonomous Navigation</h3>
+              <p>Combining localization, planning, and collision checking to move a robot from one point to another with
+                minimal manual control.</p>
+            </article>
+            <article class="robotics-info-card"><i class="fas fa-gears"></i>
+              <h3>Custom ROS 2 Pipeline</h3>
+              <p>Designing nodes, topics, transforms, maps, and visualization workflows as one integrated robotics
+                software stack.</p>
+            </article>
+          </div>
+          <div class="section-next-actions"><a class="mini-return-btn" href="#project">View Project</a><a
+              class="mini-return-btn" href="index.html">Return main page</a></div>
+        </div>
+      </section>
+
+      <section class="robotics-section section-alt" id="project">
+        <div class="container">
+          <h2 class="robotics-section-title"><span class="heading-symbol symbol-arm"><i class="fas fa-robot"></i></span>
+            Project: 3D LiDAR Navigation Architecture</h2>
+          <p class="robotics-lead">This project integrates ROS 2, LIO-SAM, OctoMap, EKF fusion, RViz2, and navigation
+            logic to build a rover system capable of mapping, localization, obstacle detection, and waypoint movement.
+          </p>
+          <div class="robotics-card-grid">
+            <article class="robotics-info-card">
+              <h3>Problem</h3>
+              <p>Robots need accurate environment awareness before they can navigate safely in real-world or lab
+                conditions.</p>
+            </article>
+            <article class="robotics-info-card">
+              <h3>Solution</h3>
+              <p>A custom pipeline that converts LiDAR and IMU data into maps, pose estimates, occupancy information,
+                and navigation decisions.</p>
+            </article>
+            <article class="robotics-info-card">
+              <h3>Impact</h3>
+              <p>The system demonstrates practical robotics engineering and gives clients or recruiters a clear view of
+                technical capability.</p>
+            </article>
+          </div>
+          <div class="section-next-actions">
+            <button class="watch-demo-button" id="watchDemoButton">
+              <span class="watch-demo-text">Watch Demo Video</span>
+              <span class="watch-demo-shine"></span>
+            </button>
+            <a class="mini-return-btn" href="#topics">Explore Topics</a>
+          </div>
+          <!-- Video Container -->
+          <div class="project-video-container" id="projectVideoContainer" style="display: none;">
+            <div class="project-video-frame">
+              <button class="project-close-button" id="projectCloseButton">
+                <i class="fas fa-times"></i>
+              </button>
+              <video controls preload="auto" id="projectVideo" playsinline>
                 <source src="robotics-navigation-demo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
@@ -94,60 +904,47 @@
         </div>
       </section>
 
-      <section class="robotics-section" id="domain">
-        <div class="container">
-          <h2 class="robotics-section-title"><span class="heading-symbol symbol-scan"><i class="fas fa-satellite-dish"></i></span> Domain Overview</h2>
-          <p class="section-desc" style="text-align:left;margin-left:0">My robotics domain focuses on converting raw sensor data into reliable navigation intelligence for autonomous machines.</p>
-          <div class="robotics-card-grid">
-            <article class="robotics-info-card"><i class="fas fa-cubes"></i><h3>3D Point Cloud Mapping</h3><p>Using LiDAR data to represent the environment in 3D so the robot can understand obstacles, free space, and terrain structure.</p></article>
-            <article class="robotics-info-card"><i class="fas fa-route"></i><h3>Autonomous Navigation</h3><p>Combining localization, planning, and collision checking to move a robot from one point to another with minimal manual control.</p></article>
-            <article class="robotics-info-card"><i class="fas fa-gears"></i><h3>Custom ROS 2 Pipeline</h3><p>Designing nodes, topics, transforms, maps, and visualization workflows as one integrated robotics software stack.</p></article>
-          </div>
-          <div class="section-next-actions"><a class="mini-return-btn" href="#project">View Project</a><a class="mini-return-btn" href="index.html">Return main page</a></div>
-        </div>
-      </section>
-
-      <section class="robotics-section section-alt" id="project">
-        <div class="container">
-          <h2 class="robotics-section-title"><span class="heading-symbol symbol-arm"><i class="fas fa-robot"></i></span> Project: 3D LiDAR Navigation Architecture</h2>
-          <p class="robotics-lead">This project integrates ROS 2, LIO-SAM, OctoMap, EKF fusion, RViz2, and navigation logic to build a rover system capable of mapping, localization, obstacle detection, and waypoint movement.</p>
-          <div class="robotics-card-grid">
-            <article class="robotics-info-card"><h3>Problem</h3><p>Robots need accurate environment awareness before they can navigate safely in real-world or lab conditions.</p></article>
-            <article class="robotics-info-card"><h3>Solution</h3><p>A custom pipeline that converts LiDAR and IMU data into maps, pose estimates, occupancy information, and navigation decisions.</p></article>
-            <article class="robotics-info-card"><h3>Impact</h3><p>The system demonstrates practical robotics engineering and gives clients or recruiters a clear view of technical capability.</p></article>
-          </div>
-          <div class="section-next-actions"><a class="mini-return-btn" href="#demo">Watch Demo Video</a><a class="mini-return-btn" href="#topics">Explore Topics</a></div>
-        </div>
-      </section>
-
       <section class="robotics-section" id="topics">
         <div class="container">
-          <h2 class="robotics-section-title"><span class="heading-symbol symbol-ai"><i class="fas fa-brain"></i></span> Click Any Technology</h2>
-          <p class="robotics-lead">Select a topic to see what it is, why it is used, advantages, and where it fits in my project.</p>
+          <h2 class="robotics-section-title"><span class="heading-symbol symbol-ai"><i class="fas fa-brain"></i></span>
+            Click Any Technology</h2>
+          <p class="robotics-lead">Select a topic to see what it is, why it is used, advantages, and where it fits in my
+            project.</p>
           <div class="topic-grid">
-            <button class="topic-btn active" data-topic="ros2"><strong>ROS 2</strong><span>Robot software framework</span></button>
-            <button class="topic-btn" data-topic="liosam"><strong>LIO-SAM</strong><span>LiDAR inertial odometry</span></button>
-            <button class="topic-btn" data-topic="octomap"><strong>OctoMap</strong><span>3D occupancy mapping</span></button>
-            <button class="topic-btn" data-topic="slam"><strong>SLAM</strong><span>Mapping + localization</span></button>
+            <button class="topic-btn active" data-topic="ros2"><strong>ROS 2</strong><span>Robot software
+                framework</span></button>
+            <button class="topic-btn" data-topic="liosam"><strong>LIO-SAM</strong><span>LiDAR inertial
+                odometry</span></button>
+            <button class="topic-btn" data-topic="octomap"><strong>OctoMap</strong><span>3D occupancy
+                mapping</span></button>
+            <button class="topic-btn" data-topic="slam"><strong>SLAM</strong><span>Mapping +
+                localization</span></button>
             <button class="topic-btn" data-topic="lidar"><strong>3D LiDAR</strong><span>Depth sensing</span></button>
-            <button class="topic-btn" data-topic="ekf"><strong>EKF Fusion</strong><span>Stable pose estimate</span></button>
+            <button class="topic-btn" data-topic="ekf"><strong>EKF Fusion</strong><span>Stable pose
+                estimate</span></button>
             <button class="topic-btn" data-topic="rviz"><strong>RViz2</strong><span>Visualization</span></button>
-            <button class="topic-btn" data-topic="nav"><strong>Navigation</strong><span>Planning and movement</span></button>
+            <button class="topic-btn" data-topic="nav"><strong>Navigation</strong><span>Planning and
+                movement</span></button>
           </div>
           <div class="topic-detail" id="topicDetail"></div>
-          <div class="section-next-actions"><a class="mini-return-btn" href="#project">Return project section</a><a class="mini-return-btn" href="index.html">Return main page</a></div>
+          <div class="section-next-actions"><a class="mini-return-btn" href="#project">Return project section</a><a
+              class="mini-return-btn" href="index.html">Return main page</a></div>
         </div>
       </section>
 
       <section class="robotics-section" id="contact">
         <div class="container robotics-cta">
           <p class="robotics-kicker">Interested in robotics, cybersecurity, or secure AI systems?</p>
-          <h2 class="robotics-section-title"><span class="heading-symbol symbol-link"><i class="fas fa-handshake"></i></span> Let’s Discuss a Project</h2>
-          <p class="robotics-lead" style="margin:auto">I am available for collaboration, project discussions, robotics lab work, and secure software development opportunities.</p>
+          <h2 class="robotics-section-title"><span class="heading-symbol symbol-link"><i
+                class="fas fa-handshake"></i></span> Let’s Discuss a Project</h2>
+          <p class="robotics-lead" style="margin:auto">I am available for collaboration, project discussions, robotics
+            lab work, and secure software development opportunities.</p>
           <div class="section-next-actions">
             <a class="mini-return-btn" href="tel:7989846814"><i class="fas fa-phone"></i> 7989846814</a>
-            <a class="mini-return-btn" href="mailto:darlapraveen87@gmail.com"><i class="fas fa-envelope"></i> Email Me</a>
-            <a class="mini-return-btn" href="https://www.linkedin.com/in/praveen-darla-875773385" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a class="mini-return-btn" href="mailto:darlapraveen87@gmail.com"><i class="fas fa-envelope"></i> Email
+              Me</a>
+            <a class="mini-return-btn" href="https://www.linkedin.com/in/praveen-darla-875773385" target="_blank"
+              rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
             <a class="mini-return-btn" href="index.html"><i class="fas fa-house"></i> Return main page</a>
           </div>
         </div>
@@ -173,6 +970,47 @@
     }
     document.querySelectorAll('.topic-btn').forEach(btn => btn.addEventListener('click', () => renderTopic(btn.dataset.topic)));
     renderTopic('ros2');
+
+    // Handle project demo video button click
+    const watchDemoButton = document.getElementById('watchDemoButton');
+    const projectVideoContainer = document.getElementById('projectVideoContainer');
+    const projectVideo = document.getElementById('projectVideo');
+    const projectCloseButton = document.getElementById('projectCloseButton');
+
+    if (watchDemoButton && projectVideoContainer && projectVideo && projectCloseButton) {
+      watchDemoButton.addEventListener('click', () => {
+        projectVideoContainer.style.display = 'flex';
+        projectVideo.play().catch(() => {
+          // Autoplay might be blocked, user will click play manually
+        });
+        // Smooth scroll to video
+        projectVideoContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      projectCloseButton.addEventListener('click', () => {
+        projectVideo.pause();
+        projectVideo.currentTime = 0;
+        projectVideoContainer.style.display = 'none';
+        document.body.classList.remove('robotics-video-playing');
+      });
+
+      projectVideo.addEventListener('play', () => {
+        projectVideoContainer.querySelector('.project-video-frame').classList.add('video-playing');
+        document.body.classList.add('robotics-video-playing');
+      });
+
+      projectVideo.addEventListener('pause', () => {
+        projectVideoContainer.querySelector('.project-video-frame').classList.remove('video-playing');
+        document.body.classList.remove('robotics-video-playing');
+      });
+
+      projectVideo.addEventListener('ended', () => {
+        projectVideoContainer.querySelector('.project-video-frame').classList.remove('video-playing');
+        document.body.classList.remove('robotics-video-playing');
+      });
+    }
   </script>
+  <script src="chatbot.js"></script>
 </body>
+
 </html>

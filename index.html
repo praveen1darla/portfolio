@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DARLA PRAVEEN | Cybersecurity, Robotics & AI Portfolio</title>
-  <meta name="description" content="Cybersecurity, robotics, ROS 2, SLAM, AI tools, and secure web engineering portfolio by DARLA PRAVEEN." />
+  <meta name="description"
+    content="Cybersecurity, robotics, ROS 2, SLAM, AI tools, and secure web engineering portfolio by DARLA PRAVEEN." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="chatbot.css" />
+  <style>
+    .photo-frame,
+    .profile-img,
+    .photo-frame::after {
+      border-radius: 12px !important;
+    }
+  </style>
 
 </head>
-<body>
-  <!-- ========== WELCOME ANIMATION OVERLAY ========== -->
-  <div class="welcome-overlay" id="welcomeOverlay">
-    <canvas id="welcomeMatrixCanvas"></canvas>
-    <div class="welcome-content">
-      <div class="welcome-text" id="welcomeText">
-          <span class="welcome-word">W</span><span class="welcome-word">e</span><span class="welcome-word">l</span><span class="welcome-word">c</span><span class="welcome-word">o</span><span class="welcome-word">m</span><span class="welcome-word">e</span>
-          <span class="welcome-space"></span>
-          <span class="welcome-word">t</span><span class="welcome-word">o</span>
-          <span class="welcome-space"></span>
-          <span class="welcome-word">M</span><span class="welcome-word">y</span>
-          <span class="welcome-space"></span>
-          <span class="welcome-word">W</span><span class="welcome-word">e</span><span class="welcome-word">b</span><span class="welcome-word">s</span><span class="welcome-word">i</span><span class="welcome-word">t</span><span class="welcome-word">e</span>
-        </div>
-        <div class="scroll-hint" id="scrollHint">Choose Your Experience</div>
-    </div>
-  </div>
 
+<body>
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" id="navbar">
     <a href="#home" class="nav-logo">
@@ -53,15 +48,21 @@
     <canvas id="matrixCanvas"></canvas>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="hero-tag">Portfolio 2026 • Cybersecurity • Robotics • AI Systems</p>
-      <h1 class="hero-title glitch" data-text="Cybersecurity, Robotics & AI Engineering">Cybersecurity, Robotics & AI Engineering</h1>
-      <p class="hero-subtitle" id="typedText"></p>
-      <div class="hero-cta">
+      <p class="hero-tag hero-tag-animate">Portfolio • Cybersecurity • Robotics • </p>
+      <h1 class="hero-title">
+        <span class="hero-word" style="color: var(--neon-cyan);">Cybersecurity,</span>
+        <span class="hero-word" style="color: var(--neon-green);">Robotics</span>
+        <span class="hero-word" style="color: var(--neon-cyan);">&amp;</span>
+        <span class="hero-word" style="color: var(--neon-purple);">AI</span>
+        <span class="hero-word" style="color: var(--neon-cyan);">Engineering</span>
+      </h1>
+      <p class="hero-subtitle hero-subtitle-animate" id="typedText"></p>
+      <div class="hero-cta hero-cta-animate">
         <a href="#projects" class="btn btn-primary"><i class="fas fa-briefcase"></i> Explore Work</a>
         <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
       </div>
     </div>
-    <div class="scroll-indicator">
+    <div class="scroll-indicator scroll-indicator-animate">
       <span>Scroll Down</span>
       <div class="scroll-arrow"></div>
     </div>
@@ -122,9 +123,12 @@
             </a>
           </div>
           <div class="photo-socials">
-            <a href="https://www.linkedin.com/in/praveen-darla-875773385" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/praveen-darla-875773385" target="_blank" rel="noopener noreferrer"
+              aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/praveen_darla_4.16/" target="_blank" rel="noopener noreferrer"
+              aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X"><i
+                class="fab fa-x-twitter"></i></a>
           </div>
         </div>
         <!-- Details Column -->
@@ -141,12 +145,17 @@
             <div class="terminal-body">
               <p class="terminal-line"><span class="prompt">$</span> cat /home/praveen/about.txt</p>
               <p class="terminal-output"><span class="key">Name:</span> DARLA PRAVEEN</p>
-              <p class="terminal-output"><span class="key">Degree:</span> B.Tech — <span id="terminalYear">3rd</span> Year</p>
+              <p class="terminal-output"><span class="key">Degree:</span> B.Tech — <span id="terminalYear">3rd</span>
+                Year</p>
               <p class="terminal-output"><span class="key">Branch:</span> CS (Cyber Security)</p>
               <p class="terminal-output"><span class="key">Origin:</span> Pamulapadu, Guntur, Andhra Pradesh</p>
-              <p class="terminal-output"><span class="key">Status:</span> <span class="status-online">● Active</span></p>
+              <p class="terminal-output"><span class="key">Status:</span> <span class="status-online">● Active</span>
+              </p>
               <p class="terminal-line"><span class="prompt">$</span> echo $BIO</p>
-              <p class="terminal-output bio-text">I design and build secure, intelligent systems across cybersecurity, robotics, web platforms, and automation. My work combines ethical hacking, network security, Linux, ROS 2, SLAM, 3D mapping, and AI-assisted development to deliver practical solutions with clean engineering and real-world impact.</p>
+              <p class="terminal-output bio-text">I design and build secure, intelligent systems across cybersecurity,
+                robotics, web platforms, and automation. My work combines ethical hacking, network security, Linux, ROS
+                2, SLAM, 3D mapping, and AI-assisted development to deliver practical solutions with clean engineering
+                and real-world impact.</p>
               <p class="terminal-line"><span class="prompt">$</span> <span class="blink">_</span></p>
             </div>
           </div>
@@ -186,19 +195,23 @@
 
           <!-- Robotics Lab — Current Work -->
           <div class="about-card current-work-card">
-            <h3 class="card-title"><i class="fas fa-robot"></i> Robotics Lab <span class="live-badge"><span class="live-dot"></span> Active</span></h3>
+            <h3 class="card-title"><i class="fas fa-robot"></i> Robotics Lab <span class="live-badge"><span
+                  class="live-dot"></span> Active</span></h3>
             <div class="work-highlight">
               <div class="work-icon"><i class="fas fa-cubes"></i></div>
               <div class="work-info">
                 <h4>3D Point Cloud Mapping & Navigation</h4>
-                <p>Building real-time 3D environment maps using LiDAR-Inertial odometry (LIO-SAM), OctoMap-based volumetric representations, and ROS 2 navigation stacks for autonomous rover exploration and path planning.</p>
+                <p>Building real-time 3D environment maps using LiDAR-Inertial odometry (LIO-SAM), OctoMap-based
+                  volumetric representations, and ROS 2 navigation stacks for autonomous rover exploration and path
+                  planning.</p>
               </div>
             </div>
             <div class="work-highlight">
               <div class="work-icon"><i class="fas fa-dog"></i></div>
               <div class="work-info">
                 <h4>Robot Dog-Wheel System</h4>
-                <p>Working on a hybrid robot dog-wheel platform combining legged and wheeled locomotion for enhanced mobility across diverse terrains.</p>
+                <p>Working on a hybrid robot dog-wheel platform combining legged and wheeled locomotion for enhanced
+                  mobility across diverse terrains.</p>
               </div>
             </div>
             <div class="work-tags">
@@ -274,14 +287,18 @@
     <div class="cyber-bg-grid"></div>
     <div class="container">
       <h2 class="section-title slide-up"><span class="title-decorator">//</span> Selected Projects</h2>
-      <p class="section-desc slide-up">Production-style cybersecurity, AI, and web platforms focused on reliability, usability, and measurable impact.</p>
+      <p class="section-desc slide-up">Production-style cybersecurity, AI, and web platforms focused on reliability,
+        usability, and measurable impact.</p>
       <div class="projects-grid projects-grid--three">
-        <a href="https://darla.pythonanywhere.com" target="_blank" rel="noopener noreferrer" class="project-card slide-left" id="project1">
+        <a href="https://darla.pythonanywhere.com" target="_blank" rel="noopener noreferrer"
+          class="project-card slide-left" id="project1">
           <div class="project-glow"></div>
           <div class="project-number">01</div>
           <div class="project-icon"><i class="fas fa-file-shield"></i></div>
           <h3 class="project-name">Secured Log Analysis &amp; Threat Hunting System</h3>
-          <p class="project-desc">A security log analysis platform that parses, correlates, and visualizes system logs to detect suspicious activities, anomalies, and potential threats in real time. Features automated threat hunting workflows, rule-based alerting, and interactive dashboards for SOC-level monitoring.</p>
+          <p class="project-desc">A security log analysis platform that parses, correlates, and visualizes system logs
+            to detect suspicious activities, anomalies, and potential threats in real time. Features automated threat
+            hunting workflows, rule-based alerting, and interactive dashboards for SOC-level monitoring.</p>
           <div class="project-tags">
             <span class="work-tag">Log Analysis</span>
             <span class="work-tag">Threat Hunting</span>
@@ -290,12 +307,15 @@
           </div>
           <span class="project-link">View Project <i class="fas fa-arrow-right"></i></span>
         </a>
-        <a href="https://web-production-9c69c.up.railway.app" target="_blank" rel="noopener noreferrer" class="project-card slide-up" id="project2">
+        <a href="https://web-production-9c69c.up.railway.app" target="_blank" rel="noopener noreferrer"
+          class="project-card slide-up" id="project2">
           <div class="project-glow"></div>
           <div class="project-number">02</div>
           <div class="project-icon"><i class="fas fa-robot"></i></div>
           <h3 class="project-name">CyberGuard AI Chatbot</h3>
-          <p class="project-desc">An AI-powered cybersecurity chatbot that provides real-time security guidance, vulnerability explanations, and incident response recommendations. Uses natural language processing to answer security queries, suggest remediation steps, and educate users on best practices.</p>
+          <p class="project-desc">An AI-powered cybersecurity chatbot that provides real-time security guidance,
+            vulnerability explanations, and incident response recommendations. Uses natural language processing to
+            answer security queries, suggest remediation steps, and educate users on best practices.</p>
           <div class="project-tags">
             <span class="work-tag">AI / NLP</span>
             <span class="work-tag">Chatbot</span>
@@ -304,12 +324,15 @@
           </div>
           <span class="project-link">View Project <i class="fas fa-arrow-right"></i></span>
         </a>
-        <a href="https://praveendarla-file-converter.hf.space" target="_blank" rel="noopener noreferrer" class="project-card slide-right" id="project4">
+        <a href="https://praveendarla-file-converter.hf.space" target="_blank" rel="noopener noreferrer"
+          class="project-card slide-right" id="project4">
           <div class="project-glow"></div>
           <div class="project-number">03</div>
           <div class="project-icon"><i class="fas fa-file-import"></i></div>
           <h3 class="project-name">Universal File Converter</h3>
-          <p class="project-desc">A powerful web-based file conversion tool supporting 34+ format conversions across documents, images, audio, and video. Features drag-and-drop upload, real-time conversion progress, batch processing, and a clean interface for seamless file transformations.</p>
+          <p class="project-desc">A powerful web-based file conversion tool supporting 34+ format conversions across
+            documents, images, audio, and video. Features drag-and-drop upload, real-time conversion progress, batch
+            processing, and a clean interface for seamless file transformations.</p>
           <div class="project-tags">
             <span class="work-tag">Python</span>
             <span class="work-tag">Flask</span>
@@ -331,33 +354,39 @@
   <section class="section gated-section" id="robotics">
     <div class="container">
       <h2 class="section-title slide-up"><span class="title-decorator">//</span> Robotics Engineering</h2>
-      <p class="section-desc slide-up">Autonomous systems work combining ROS 2, LiDAR perception, SLAM, mapping, and navigation architecture.</p>
+      <p class="section-desc slide-up">Autonomous systems work combining ROS 2, LiDAR perception, SLAM, mapping, and
+        navigation architecture.</p>
       <div class="projects-grid projects-grid--robotics">
         <article class="project-card project-card--robotics robotics-feature slide-up" id="project-robotics1">
           <div class="project-glow"></div>
           <div class="project-number">01</div>
           <div class="project-icon"><i class="fas fa-cubes"></i></div>
           <h3 class="project-name">3D Point Cloud Mapping &amp; Autonomous Navigation System</h3>
-          <button class="project-video-trigger" type="button" data-video-src="robotics-navigation-demo.mp4" aria-label="Play robotics navigation demo video">
-            <span class="video-symbol"><i class="fas fa-play"></i></span>
-            <span class="video-trigger-text">
-              <strong>Watch Demo Video</strong>
-              <small>Click to expand and play</small>
-            </span>
+          <button class="project-video-trigger" type="button" data-video-src="robotics-navigation-demo.mp4"
+            aria-label="Play robotics navigation demo video">
+            <img src="demo-image.png" alt="Robotics Demo" class="video-trigger-image">
+            <span class="video-play-overlay"><i class="fas fa-play"></i></span>
           </button>
           <div class="robotics-story">
-            <p class="project-desc project-impact">🚀 Designed and implemented my own ROS2-based 3D LiDAR navigation architecture, enabling autonomous mapping, localization, obstacle avoidance, and waypoint navigation in complex environments.</p>
+            <p class="project-desc project-impact">🚀 Designed and implemented my own ROS2-based 3D LiDAR navigation
+              architecture, enabling autonomous mapping, localization, obstacle avoidance, and waypoint navigation in
+              complex environments.</p>
 
             <details class="robotics-detail" open>
               <summary><span>Project Overview</span><i class="fas fa-chevron-down"></i></summary>
-              <p class="project-desc">Designed and developed a custom ROS2-based autonomous navigation architecture for a mobile rover using 3D LiDAR perception. Unlike traditional navigation stacks, this system was architected and integrated from scratch by combining 3D point cloud mapping, localization, path planning, collision checking, and autonomous navigation into a unified workflow.</p>
+              <p class="project-desc">Designed and developed a custom ROS2-based autonomous navigation architecture for
+                a mobile rover using 3D LiDAR perception. Unlike traditional navigation stacks, this system was
+                architected and integrated from scratch by combining 3D point cloud mapping, localization, path
+                planning, collision checking, and autonomous navigation into a unified workflow.</p>
             </details>
 
             <details class="robotics-detail">
               <summary><span>Custom 3D LiDAR Navigation Architecture</span><i class="fas fa-chevron-down"></i></summary>
               <div class="project-highlight-box">
                 <h4>Custom 3D LiDAR Navigation Architecture</h4>
-                <p>Architected and developed a complete autonomous navigation framework for a ground rover using ROS2, LIO-SAM, OctoMap, and EKF sensor fusion. The system enables the rover to perceive, understand, and navigate complex environments using real-time 3D spatial information.</p>
+                <p>Architected and developed a complete autonomous navigation framework for a ground rover using ROS2,
+                  LIO-SAM, OctoMap, and EKF sensor fusion. The system enables the rover to perceive, understand, and
+                  navigate complex environments using real-time 3D spatial information.</p>
               </div>
             </details>
 
@@ -366,7 +395,8 @@
               <ul class="project-contributions">
                 <li>Designed a custom navigation architecture instead of relying only on pre-built frameworks.</li>
                 <li>Integrated LIO-SAM for high-accuracy 3D LiDAR SLAM and map generation.</li>
-                <li>Built the pipeline from 3D point cloud acquisition to mapping, localization, planning, and navigation.</li>
+                <li>Built the pipeline from 3D point cloud acquisition to mapping, localization, planning, and
+                  navigation.</li>
                 <li>Implemented EKF-based sensor fusion for stable pose estimation.</li>
                 <li>Generated 3D occupancy maps using OctoMap for environment understanding.</li>
                 <li>Developed custom collision detection and navigation decision-making modules.</li>
@@ -411,13 +441,16 @@
       <div class="social-links">
         <h3 class="social-title">Professional Links</h3>
         <div class="social-icons">
-          <a href="https://www.linkedin.com/in/praveen-darla-875773385" target="_blank" rel="noopener noreferrer" class="social-btn linkedin" aria-label="LinkedIn" id="socialLinkedin">
+          <a href="https://www.linkedin.com/in/praveen-darla-875773385" target="_blank" rel="noopener noreferrer"
+            class="social-btn linkedin" aria-label="LinkedIn" id="socialLinkedin">
             <i class="fab fa-linkedin-in"></i>
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn instagram" aria-label="Instagram" id="socialInstagram">
+          <a href="https://www.instagram.com/praveen_darla_4.16/" target="_blank" rel="noopener noreferrer"
+            class="social-btn instagram" aria-label="Instagram" id="socialInstagram">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn twitter" aria-label="Twitter / X" id="socialTwitter">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn twitter" aria-label="Twitter / X"
+            id="socialTwitter">
             <i class="fab fa-x-twitter"></i>
           </a>
         </div>
@@ -432,7 +465,8 @@
     <span class="footer-tag">Secure systems • Robotics • AI-assisted engineering</span>
   </footer>
 
-  <div class="video-modal" id="roboticsVideoModal" aria-hidden="true" role="dialog" aria-label="Robotics project demo video">
+  <div class="video-modal" id="roboticsVideoModal" aria-hidden="true" role="dialog"
+    aria-label="Robotics project demo video">
     <div class="video-modal-backdrop" data-video-close></div>
     <div class="video-modal-panel" role="document">
       <button class="video-modal-close" type="button" data-video-close aria-label="Close video">
@@ -449,4 +483,5 @@
   <script src="chatbot.js"></script>
 
 </body>
+
 </html>

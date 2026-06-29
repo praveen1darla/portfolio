@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Certifications | DARLA PRAVEEN</title>
-  <meta name="description" content="Professional certifications earned by Darla Praveen in Cybersecurity and Programming." />
+  <meta name="description"
+    content="Professional certifications earned by Darla Praveen in Cybersecurity and Programming." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="chatbot.css" />
   <style>
     .cert-page {
       min-height: 100vh;
       padding: 100px 20px 60px;
     }
+
     .cert-page-header {
       text-align: center;
       margin-bottom: 50px;
     }
+
     .cert-page-header h1 {
       font-family: var(--font-display);
       font-size: 2.2rem;
       color: #fff;
       margin-bottom: 10px;
     }
+
     .cert-page-header p {
       font-family: var(--font-mono);
       font-size: .9rem;
       color: var(--text-secondary);
     }
+
     .cert-back {
       display: inline-flex;
       align-items: center;
@@ -40,9 +49,10 @@
       margin-bottom: 30px;
       transition: var(--transition);
     }
+
     .cert-back:hover {
       gap: 12px;
-      text-shadow: 0 0 12px rgba(0,240,255,.4);
+      text-shadow: 0 0 12px rgba(0, 240, 255, .4);
     }
 
     .cert-grid {
@@ -52,56 +62,67 @@
       max-width: 900px;
       margin: 0 auto;
     }
+
     .cert-page-card {
       background: var(--bg-card);
-      border: 1px solid rgba(0,240,255,.08);
+      border: 1px solid rgba(0, 240, 255, .08);
       border-radius: var(--radius-md);
       overflow: hidden;
       transition: var(--transition);
     }
+
     .cert-page-card:hover {
-      border-color: rgba(0,240,255,.25);
-      box-shadow: 0 8px 32px rgba(0,240,255,.08);
+      border-color: rgba(0, 240, 255, .25);
+      box-shadow: 0 8px 32px rgba(0, 240, 255, .08);
       transform: translateY(-4px);
     }
+
     .cert-page-img {
       width: 100%;
       display: block;
-      border-bottom: 1px solid rgba(0,240,255,.08);
+      border-bottom: 1px solid rgba(0, 240, 255, .08);
     }
+
     .cert-page-details {
       padding: 24px;
     }
+
     .cert-page-details h3 {
       font-family: var(--font-display);
       font-size: 1.05rem;
       color: #fff;
       margin-bottom: 8px;
     }
+
     .cert-page-issuer {
       font-family: var(--font-mono);
       font-size: .8rem;
       color: var(--text-secondary);
       margin-bottom: 12px;
     }
+
     .cert-page-issuer i {
       color: var(--neon-cyan);
       margin-right: 6px;
     }
+
     .cert-page-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
       margin-bottom: 10px;
     }
+
     .cert-page-meta span {
       font-family: var(--font-mono);
       font-size: .78rem;
       color: var(--neon-green);
     }
+
     .cert-page-meta span i {
       margin-right: 5px;
     }
+
     .cert-page-reg {
       font-family: var(--font-mono);
       font-size: .7rem;
@@ -109,11 +130,17 @@
     }
 
     @media (max-width: 480px) {
-      .cert-grid { grid-template-columns: 1fr; }
-      .cert-page-header h1 { font-size: 1.6rem; }
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cert-page-header h1 {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Nav -->
@@ -155,7 +182,8 @@
           <img src="cert-wisun.png" alt="Wi-SUN Technology for IoT Applications Certificate" class="cert-page-img" />
           <div class="cert-page-details">
             <h3>Hands-on Workshop — Wi-SUN Technology for IoT Applications</h3>
-            <p class="cert-page-issuer"><i class="fas fa-building"></i> IIIT-Hyderabad — Smart City Living Lab & FabLab</p>
+            <p class="cert-page-issuer"><i class="fas fa-building"></i> IIIT-Hyderabad — Smart City Living Lab & FabLab
+            </p>
             <div class="cert-page-meta">
               <span><i class="fas fa-calendar"></i> 6th June 2026</span>
               <span><i class="fas fa-map-marker-alt"></i> IIIT-Hyderabad</span>
@@ -168,5 +196,7 @@
     </div>
   </main>
 
+  <script src="chatbot.js"></script>
 </body>
+
 </html>
