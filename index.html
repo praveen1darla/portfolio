@@ -27,7 +27,23 @@
           <span class="welcome-space"></span>
           <span class="welcome-word">W</span><span class="welcome-word">e</span><span class="welcome-word">b</span><span class="welcome-word">s</span><span class="welcome-word">i</span><span class="welcome-word">t</span><span class="welcome-word">e</span>
         </div>
-        <div class="scroll-hint" id="scrollHint">Scroll Down</div>
+        <div class="scroll-hint" id="scrollHint">Choose Your Experience</div>
+    </div>
+  </div>
+
+  <div class="experience-portal" id="experiencePortal" aria-hidden="true" role="dialog" aria-label="Choose portfolio section">
+    <div class="portal-backdrop"></div>
+    <div class="portal-panel">
+      <p class="portal-eyebrow">Welcome to my professional workspace</p>
+      <h2>What would you like to explore?</h2>
+      <p class="portal-copy">Select one path. After each section, navigation buttons will help you continue without a routine scroll-only experience.</p>
+      <div class="portal-actions">
+        <button class="portal-btn" data-target="#about"><i class="fas fa-user-tie"></i><span>Profile</span><small>About, education, skills</small></button>
+        <button class="portal-btn" data-target="#projects"><i class="fas fa-layer-group"></i><span>Projects</span><small>Cybersecurity and web systems</small></button>
+        <a class="portal-btn portal-btn-feature" href="robotics.html"><i class="fas fa-robot"></i><span>Robotics</span><small>Separate premium domain page</small></a>
+        <button class="portal-btn" data-target="#projects"><i class="fas fa-shield-halved"></i><span>Cybersecurity</span><small>Security platforms and tools</small></button>
+        <button class="portal-btn" data-target="#contact"><i class="fas fa-address-card"></i><span>Contact</span><small>Phone, email, LinkedIn</small></button>
+      </div>
     </div>
   </div>
 
@@ -43,7 +59,7 @@
       <li><a href="#home" class="nav-link active">Home</a></li>
       <li><a href="#about" class="nav-link">About</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
-      <li><a href="#robotics" class="nav-link">Robotics</a></li>
+      <li><a href="robotics.html" class="nav-link">Robotics</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
   </nav>
@@ -54,7 +70,7 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="hero-tag">Portfolio 2026 • Cybersecurity • Robotics • AI Systems</p>
-      <h1 class="hero-title glitch" data-text="Cybersecurity, Robotics & AI Engineering Portfolio">Cybersecurity, Robotics & AI Engineering Portfolio</h1>
+      <h1 class="hero-title glitch" data-text="Cybersecurity, Robotics & AI Engineering">Cybersecurity, Robotics & AI Engineering</h1>
       <p class="hero-subtitle" id="typedText"></p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary"><i class="fas fa-briefcase"></i> Explore Work</a>
@@ -233,6 +249,10 @@
 
         </div>
       </div>
+      <div class="section-next-actions">
+        <button class="mini-return-btn" data-open-portal><i class="fas fa-grid-2"></i> Return to options</button>
+        <a class="mini-return-btn" href="#projects">Next: Projects</a>
+      </div>
     </div>
   </section>
 
@@ -285,6 +305,11 @@
           </div>
           <span class="project-link">View Project <i class="fas fa-arrow-right"></i></span>
         </a>
+      </div>
+      <div class="section-next-actions">
+        <button class="mini-return-btn" data-open-portal><i class="fas fa-grid-2"></i> Return to options</button>
+        <a class="mini-return-btn" href="robotics.html">Open Robotics Page</a>
+        <a class="mini-return-btn" href="#contact">Next: Contact</a>
       </div>
     </div>
   </section>
@@ -346,6 +371,10 @@
             <span class="work-tag">Autonomous Navigation</span>
           </div>
         </article>
+      </div>
+      <div class="section-next-actions">
+        <button class="mini-return-btn" data-open-portal><i class="fas fa-grid-2"></i> Return to options</button>
+        <a class="mini-return-btn" href="#contact">Contact Me</a>
       </div>
     </div>
   </section>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DARLA PRAVEEN | Robotics Engineering Domain</title>
+  <meta name="description" content="Robotics engineering domain page for DARLA PRAVEEN with ROS 2, LIO-SAM, OctoMap, SLAM, 3D LiDAR mapping, navigation, and project demo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body.robotics-page { min-height: 100vh; }
+    .robotics-shell { position: relative; overflow: hidden; }
+    .robotics-shell::before { content:''; position: fixed; inset:0; pointer-events:none; background: radial-gradient(circle at 80% 10%, rgba(56,213,255,.22), transparent 28%), radial-gradient(circle at 10% 50%, rgba(121,242,192,.13), transparent 32%); }
+    .robotics-nav { position: sticky; top: 0; z-index: 30; display:flex; align-items:center; justify-content:space-between; gap:16px; padding: 18px clamp(18px, 5vw, 70px); background: rgba(6,11,22,.72); backdrop-filter: blur(18px); border-bottom:1px solid rgba(255,255,255,.1); }
+    .robotics-brand { font-family: var(--font-display); font-weight:900; letter-spacing:-.03em; color:#fff; }
+    .return-chip { display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid rgba(56,213,255,.3); background:rgba(56,213,255,.09); color:#e9fbff; font-weight:900; }
+    .robotics-hero { min-height: 92vh; display:grid; align-items:center; padding: clamp(80px, 11vw, 150px) 0; }
+    .robotics-hero-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap: 34px; align-items:center; }
+    .robotics-kicker { color: var(--neon-green); font-weight:900; text-transform:uppercase; letter-spacing:.18em; }
+    .robotics-title { font-family:var(--font-display); font-size: clamp(3.2rem, 8vw, 7rem); line-height:.9; letter-spacing:-.075em; margin: 16px 0; background:linear-gradient(100deg,#fff,#bff3ff,#92ffd0); -webkit-background-clip:text; color:transparent; }
+    .robotics-lead { font-size: clamp(1.08rem, 1.8vw, 1.35rem); color: var(--text-secondary); max-width: 760px; }
+    .robotics-metrics { display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:30px; }
+    .metric-card { padding:18px; border-radius:20px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); }
+    .metric-card strong { display:block; font-family:var(--font-display); font-size:1.8rem; color:#fff; }
+    .metric-card span { color:var(--text-secondary); font-weight:700; }
+    .robotics-visual { border-radius:34px; border:1px solid rgba(255,255,255,.12); background:linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.03)); box-shadow:0 40px 120px rgba(0,0,0,.35); padding:22px; }
+    .video-frame { border-radius:24px; overflow:hidden; border:1px solid rgba(56,213,255,.24); background:#020712; }
+    .video-frame video { width:100%; display:block; aspect-ratio:16/10; object-fit:cover; }
+    .robotics-section { padding: clamp(80px, 9vw, 125px) 0; position:relative; }
+    .robotics-section-title { font-family:var(--font-display); font-size:clamp(2.1rem,5vw,4.3rem); line-height:1; letter-spacing:-.055em; margin-bottom:18px; }
+    .robotics-card-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:32px; }
+    .robotics-info-card { padding:24px; border-radius:24px; background:rgba(255,255,255,.065); border:1px solid rgba(255,255,255,.1); box-shadow:0 24px 70px rgba(0,0,0,.25); }
+    .robotics-info-card i { color:var(--neon-cyan); font-size:1.8rem; }
+    .robotics-info-card h3 { font-family:var(--font-display); margin:16px 0 10px; }
+    .robotics-info-card p, .topic-detail p, .topic-detail li { color:var(--text-secondary); }
+    .topic-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:14px; margin-top:28px; }
+    .topic-btn { min-height:118px; padding:18px; border-radius:20px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.06); color:#fff; text-align:left; cursor:pointer; transition:var(--transition); }
+    .topic-btn:hover, .topic-btn.active { transform:translateY(-6px); border-color:rgba(56,213,255,.48); box-shadow:var(--accent-glow); background:rgba(56,213,255,.10); }
+    .topic-btn strong { display:block; font-family:var(--font-display); margin-bottom:8px; }
+    .topic-btn span { color:var(--text-secondary); font-size:.92rem; }
+    .topic-detail { margin-top:22px; padding:28px; border-radius:26px; border:1px solid rgba(121,242,192,.18); background:linear-gradient(145deg, rgba(56,213,255,.10), rgba(255,255,255,.045)); }
+    .topic-detail h3 { font-family:var(--font-display); font-size:1.8rem; }
+    .topic-detail ul { margin-top:14px; padding-left:20px; }
+    .robotics-cta { text-align:center; padding: 70px 24px; border-radius:34px; background:linear-gradient(135deg, rgba(56,213,255,.13), rgba(121,242,192,.09)); border:1px solid rgba(255,255,255,.12); }
+    @media (max-width: 920px) { .robotics-hero-grid, .robotics-card-grid { grid-template-columns:1fr; } .topic-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width: 560px) { .robotics-metrics, .topic-grid { grid-template-columns:1fr; } .robotics-nav { align-items:flex-start; flex-direction:column; } }
+  </style>
+</head>
+<body class="robotics-page">
+  <div class="robotics-shell">
+    <nav class="robotics-nav">
+      <a class="robotics-brand" href="index.html">DARLA PRAVEEN • ROBOTICS DOMAIN</a>
+      <div>
+        <a class="return-chip" href="index.html"><i class="fas fa-arrow-left"></i> Return main page</a>
+        <a class="return-chip" href="#contact"><i class="fas fa-phone"></i> Contact</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="robotics-hero">
+        <div class="container robotics-hero-grid">
+          <div>
+            <p class="robotics-kicker">ROS 2 • 3D LiDAR • SLAM • Autonomous Navigation</p>
+            <h1 class="robotics-title">Robotics Engineering Domain</h1>
+            <p class="robotics-lead">A dedicated technical presentation of my robotics work: 3D point cloud mapping, localization, obstacle awareness, autonomous waypoint navigation, and custom ROS 2 architecture for real-world rover systems.</p>
+            <div class="robotics-metrics">
+              <div class="metric-card"><strong>3D</strong><span>LiDAR perception</span></div>
+              <div class="metric-card"><strong>ROS 2</strong><span>system architecture</span></div>
+              <div class="metric-card"><strong>SLAM</strong><span>mapping and localization</span></div>
+            </div>
+          </div>
+          <div class="robotics-visual">
+            <div class="video-frame" id="demo">
+              <video controls preload="metadata" poster="profile.png">
+                <source src="robotics-navigation-demo.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="robotics-section" id="domain">
+        <div class="container">
+          <h2 class="robotics-section-title">Domain Overview</h2>
+          <p class="section-desc" style="text-align:left;margin-left:0">My robotics domain focuses on converting raw sensor data into reliable navigation intelligence for autonomous machines.</p>
+          <div class="robotics-card-grid">
+            <article class="robotics-info-card"><i class="fas fa-cubes"></i><h3>3D Point Cloud Mapping</h3><p>Using LiDAR data to represent the environment in 3D so the robot can understand obstacles, free space, and terrain structure.</p></article>
+            <article class="robotics-info-card"><i class="fas fa-route"></i><h3>Autonomous Navigation</h3><p>Combining localization, planning, and collision checking to move a robot from one point to another with minimal manual control.</p></article>
+            <article class="robotics-info-card"><i class="fas fa-gears"></i><h3>Custom ROS 2 Pipeline</h3><p>Designing nodes, topics, transforms, maps, and visualization workflows as one integrated robotics software stack.</p></article>
+          </div>
+          <div class="section-next-actions"><a class="mini-return-btn" href="#project">View Project</a><a class="mini-return-btn" href="index.html">Return main page</a></div>
+        </div>
+      </section>
+
+      <section class="robotics-section section-alt" id="project">
+        <div class="container">
+          <h2 class="robotics-section-title">Project: 3D LiDAR Navigation Architecture</h2>
+          <p class="robotics-lead">This project integrates ROS 2, LIO-SAM, OctoMap, EKF fusion, RViz2, and navigation logic to build a rover system capable of mapping, localization, obstacle detection, and waypoint movement.</p>
+          <div class="robotics-card-grid">
+            <article class="robotics-info-card"><h3>Problem</h3><p>Robots need accurate environment awareness before they can navigate safely in real-world or lab conditions.</p></article>
+            <article class="robotics-info-card"><h3>Solution</h3><p>A custom pipeline that converts LiDAR and IMU data into maps, pose estimates, occupancy information, and navigation decisions.</p></article>
+            <article class="robotics-info-card"><h3>Impact</h3><p>The system demonstrates practical robotics engineering and gives clients or recruiters a clear view of technical capability.</p></article>
+          </div>
+          <div class="section-next-actions"><a class="mini-return-btn" href="#demo">Watch Demo Video</a><a class="mini-return-btn" href="#topics">Explore Topics</a></div>
+        </div>
+      </section>
+
+      <section class="robotics-section" id="topics">
+        <div class="container">
+          <h2 class="robotics-section-title">Click Any Technology</h2>
+          <p class="robotics-lead">Select a topic to see what it is, why it is used, advantages, and where it fits in my project.</p>
+          <div class="topic-grid">
+            <button class="topic-btn active" data-topic="ros2"><strong>ROS 2</strong><span>Robot software framework</span></button>
+            <button class="topic-btn" data-topic="liosam"><strong>LIO-SAM</strong><span>LiDAR inertial odometry</span></button>
+            <button class="topic-btn" data-topic="octomap"><strong>OctoMap</strong><span>3D occupancy mapping</span></button>
+            <button class="topic-btn" data-topic="slam"><strong>SLAM</strong><span>Mapping + localization</span></button>
+            <button class="topic-btn" data-topic="lidar"><strong>3D LiDAR</strong><span>Depth sensing</span></button>
+            <button class="topic-btn" data-topic="ekf"><strong>EKF Fusion</strong><span>Stable pose estimate</span></button>
+            <button class="topic-btn" data-topic="rviz"><strong>RViz2</strong><span>Visualization</span></button>
+            <button class="topic-btn" data-topic="nav"><strong>Navigation</strong><span>Planning and movement</span></button>
+          </div>
+          <div class="topic-detail" id="topicDetail"></div>
+          <div class="section-next-actions"><a class="mini-return-btn" href="#project">Return project section</a><a class="mini-return-btn" href="index.html">Return main page</a></div>
+        </div>
+      </section>
+
+      <section class="robotics-section" id="contact">
+        <div class="container robotics-cta">
+          <p class="robotics-kicker">Interested in robotics, cybersecurity, or secure AI systems?</p>
+          <h2 class="robotics-section-title">Let’s Discuss a Project</h2>
+          <p class="robotics-lead" style="margin:auto">I am available for collaboration, project discussions, robotics lab work, and secure software development opportunities.</p>
+          <div class="section-next-actions">
+            <a class="mini-return-btn" href="tel:7989846814"><i class="fas fa-phone"></i> 7989846814</a>
+            <a class="mini-return-btn" href="mailto:darlapraveen87@gmail.com"><i class="fas fa-envelope"></i> Email Me</a>
+            <a class="mini-return-btn" href="https://www.linkedin.com/in/praveen-darla-875773385" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a class="mini-return-btn" href="index.html"><i class="fas fa-house"></i> Return main page</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const topicData = {
+      ros2: ['ROS 2', 'ROS 2 is the middleware used to connect sensors, robot logic, mapping, visualization, and control modules.', ['Used for node communication, topics, services, launch files, transforms, and modular robot architecture.', 'Advantages: scalable, real-time friendly, industry supported, and suitable for multi-robot systems.', 'In my project, ROS 2 connects LiDAR, IMU, mapping, localization, visualization, and navigation components.']],
+      liosam: ['LIO-SAM', 'LIO-SAM is a LiDAR-Inertial Odometry and Mapping method that combines LiDAR scans with IMU motion data.', ['Used to estimate robot motion accurately while building a consistent map.', 'Advantages: strong accuracy, handles movement better than LiDAR-only methods, and supports real-time mapping.', 'In my project, LIO-SAM helps produce reliable odometry and 3D mapping output.']],
+      octomap: ['OctoMap', 'OctoMap stores the world as a 3D occupancy map using an efficient octree structure.', ['Used to identify occupied, free, and unknown space in 3D.', 'Advantages: memory efficient, supports volumetric mapping, and useful for obstacle understanding.', 'In my project, OctoMap converts point cloud information into a navigation-friendly 3D map.']],
+      slam: ['SLAM', 'SLAM means Simultaneous Localization and Mapping.', ['Used when a robot must build a map while also finding its own position inside that map.', 'Advantages: reduces dependency on prebuilt maps and enables autonomous exploration.', 'In my project, SLAM is the core concept behind mapping and localization.']],
+      lidar: ['3D LiDAR', '3D LiDAR measures distances using laser pulses and creates high-density point clouds.', ['Used for depth perception, obstacle detection, mapping, and environment modeling.', 'Advantages: accurate range sensing, works in many lighting conditions, and provides rich 3D geometry.', 'In my project, LiDAR is the primary perception sensor.']],
+      ekf: ['EKF Fusion', 'Extended Kalman Filter fusion combines multiple sensor sources to estimate a smoother robot pose.', ['Used to merge noisy measurements from odometry, IMU, and other sensors.', 'Advantages: stable localization, reduced drift, and better navigation behavior.', 'In my project, EKF improves pose reliability for planning and visualization.']],
+      rviz: ['RViz2', 'RViz2 is a ROS 2 visualization tool for viewing maps, point clouds, transforms, robot models, and paths.', ['Used for debugging and proving that the robotics pipeline is working correctly.', 'Advantages: real-time visual feedback, faster debugging, and professional demonstration.', 'In my project, RViz2 shows point clouds, maps, robot pose, and navigation outputs.']],
+      nav: ['Autonomous Navigation', 'Autonomous navigation allows a robot to move toward goals while avoiding unsafe areas.', ['Used for waypoint movement, path planning, obstacle checks, and mission execution.', 'Advantages: reduces manual control and enables practical field robotics.', 'In my project, navigation combines mapping, localization, and decision logic.']]
+    };
+    const detail = document.getElementById('topicDetail');
+    function renderTopic(key) {
+      const [title, intro, bullets] = topicData[key];
+      detail.innerHTML = `<h3>${title}</h3><p>${intro}</p><ul>${bullets.map(b => `<li>${b}</li>`).join('')}</ul>`;
+      document.querySelectorAll('.topic-btn').forEach(b => b.classList.toggle('active', b.dataset.topic === key));
+    }
+    document.querySelectorAll('.topic-btn').forEach(btn => btn.addEventListener('click', () => renderTopic(btn.dataset.topic)));
+    renderTopic('ros2');
+  </script>
+</body>
+</html>

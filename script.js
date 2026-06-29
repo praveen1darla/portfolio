@@ -39,10 +39,17 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollHint.classList.add('show');
       }, 1000);
 
-      // Hide overlay after 3 seconds total
+      // Keep the main professional heading visible, then reveal the choice portal.
       setTimeout(() => {
         overlay.classList.add('hidden');
-      }, 3000);
+        const portal = document.getElementById('experiencePortal');
+        if (portal) {
+          setTimeout(() => {
+            portal.classList.add('show');
+            portal.setAttribute('aria-hidden', 'false');
+          }, 650);
+        }
+      }, 5000);
     }
 
     // Matrix rain for welcome overlay
@@ -585,4 +592,29 @@ document.addEventListener('DOMContentLoaded', () => {
     modalVideo.addEventListener('ended', closeRoboticsVideo);
   }
 
+});
+
+
+// Experience portal navigation
+document.addEventListener('DOMContentLoaded', () => {
+  const portal = document.getElementById('experiencePortal');
+  const closePortal = () => {
+    if (!portal) return;
+    portal.classList.remove('show');
+    portal.setAttribute('aria-hidden', 'true');
+  };
+  document.querySelectorAll('.portal-btn[data-target]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-target');
+      closePortal();
+      setTimeout(() => document.querySelector(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 220);
+    });
+  });
+  document.querySelectorAll('[data-open-portal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!portal) return;
+      portal.classList.add('show');
+      portal.setAttribute('aria-hidden', 'false');
+    });
+  });
 });
