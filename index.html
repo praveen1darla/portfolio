@@ -34,15 +34,31 @@
   <div class="experience-portal" id="experiencePortal" aria-hidden="true" role="dialog" aria-label="Choose portfolio section">
     <div class="portal-backdrop"></div>
     <div class="portal-panel">
-      <p class="portal-eyebrow">Welcome to my professional workspace</p>
-      <h2>What would you like to explore?</h2>
-      <p class="portal-copy">Select one path. After each section, navigation buttons will help you continue without a routine scroll-only experience.</p>
-      <div class="portal-actions">
-        <button class="portal-btn" data-target="#about"><i class="fas fa-user-tie"></i><span>Profile</span><small>About, education, skills</small></button>
-        <button class="portal-btn" data-target="#projects"><i class="fas fa-layer-group"></i><span>Projects</span><small>Cybersecurity and web systems</small></button>
-        <a class="portal-btn portal-btn-feature" href="robotics.html"><i class="fas fa-robot"></i><span>Robotics</span><small>Separate premium domain page</small></a>
-        <button class="portal-btn" data-target="#projects"><i class="fas fa-shield-halved"></i><span>Cybersecurity</span><small>Security platforms and tools</small></button>
-        <button class="portal-btn" data-target="#contact"><i class="fas fa-address-card"></i><span>Contact</span><small>Phone, email, LinkedIn</small></button>
+      <p class="portal-eyebrow">Cybersecurity, Robotics & AI Engineering</p>
+      <h2>Choose your professional path</h2>
+      <p class="portal-copy">Select one focused section. About shows my complete profile, Cybersecurity Projects shows my three security/web projects, and Robotics & AI opens a separate premium domain page.</p>
+      <div class="portal-actions portal-actions--three">
+        <button class="portal-btn portal-btn-about" data-target="#about">
+          <i class="fas fa-user-tie"></i>
+          <span>About</span>
+          <small>Profile, education, skills, collaboration status</small>
+        </button>
+        <button class="portal-btn portal-btn-cyber" data-target="#projects">
+          <i class="fas fa-shield-halved"></i>
+          <span>Cybersecurity Projects</span>
+          <small>Threat hunting, AI chatbot, file converter</small>
+        </button>
+        <a class="portal-btn portal-btn-robotics" href="robotics.html">
+          <span class="robotic-symbols" aria-hidden="true">
+            <span class="bot-head"><i class="fas fa-robot"></i></span>
+            <span class="bot-arm"><i class="fas fa-hand-fist"></i></span>
+            <span class="bot-leg"><i class="fas fa-shoe-prints"></i></span>
+            <span class="ai-orbit"><i class="fas fa-brain"></i></span>
+          </span>
+          <i class="fas fa-robot main-robot-icon"></i>
+          <span>Robotics & AI</span>
+          <small>Separate domain page with demo video, ROS 2, LIO-SAM, OctoMap, SLAM</small>
+        </a>
       </div>
     </div>
   </div>

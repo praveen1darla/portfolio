@@ -2880,3 +2880,140 @@ body {
 .mini-return-btn:hover { background: rgba(56,213,255,.18); box-shadow: var(--accent-glow); }
 @media (max-width: 900px) { .portal-actions { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .portal-actions { grid-template-columns: 1fr; } .portal-btn { min-height: auto; } }
+/* ---------- THREE-BUTTON PROFESSIONAL PORTAL REFINEMENT ---------- */
+.portal-actions.portal-actions--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.portal-actions--three .portal-btn {
+  position: relative;
+  min-height: 230px;
+  padding: 28px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.portal-actions--three .portal-btn::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  opacity: .72;
+  z-index: -2;
+  animation: portalCardGlow 4.5s ease-in-out infinite;
+}
+
+.portal-actions--three .portal-btn::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(145deg, rgba(8, 16, 31, .92), rgba(13, 24, 43, .88));
+  z-index: -1;
+}
+
+.portal-btn-about::before {
+  background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(56,213,255,.35), rgba(255,255,255,.08));
+}
+
+.portal-btn-cyber::before {
+  background: linear-gradient(135deg, rgba(56,213,255,.14), rgba(77, 255, 166, .42), rgba(91,140,255,.24));
+}
+
+.portal-btn-about:hover,
+.portal-btn-cyber:hover {
+  box-shadow: 0 28px 90px rgba(56,213,255,.22), 0 0 42px rgba(121,242,192,.16);
+}
+
+.portal-btn-robotics {
+  border-color: rgba(255, 196, 87, .22);
+  background: radial-gradient(circle at 50% 15%, rgba(255,196,87,.12), transparent 46%), rgba(255,255,255,.055);
+}
+
+.portal-btn-robotics::before {
+  background: conic-gradient(from 120deg, rgba(255,196,87,.32), rgba(122,245,255,.38), rgba(191,140,255,.32), rgba(255,196,87,.32));
+  animation: robotAuraRotate 5.5s linear infinite;
+}
+
+.portal-btn-robotics:hover {
+  box-shadow: 0 30px 100px rgba(255,196,87,.18), 0 0 54px rgba(122,245,255,.20);
+}
+
+.portal-btn-robotics .main-robot-icon {
+  color: #ffd27a;
+  text-shadow: 0 0 22px rgba(255,210,122,.5);
+  animation: robotPulse 2.2s ease-in-out infinite;
+}
+
+.robotic-symbols {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.robotic-symbols span {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.13);
+  color: #bff8ff;
+  box-shadow: 0 0 24px rgba(122,245,255,.16);
+}
+
+.bot-head { top: 18px; right: 20px; animation: botFloat 3.2s ease-in-out infinite; }
+.bot-arm { bottom: 24px; right: 24px; animation: botArmMove 2.4s ease-in-out infinite; }
+.bot-leg { bottom: 24px; left: 22px; animation: botLegStep 2.8s ease-in-out infinite; }
+.ai-orbit { top: 20px; left: 22px; animation: aiOrbitFloat 3.8s ease-in-out infinite; color: #d8c3ff !important; }
+
+.portal-btn-robotics > i,
+.portal-btn-robotics > span:not(.robotic-symbols),
+.portal-btn-robotics > small {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes portalCardGlow {
+  0%, 100% { filter: brightness(1); transform: scale(1); }
+  50% { filter: brightness(1.35); transform: scale(1.015); }
+}
+
+@keyframes robotAuraRotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes robotPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+@keyframes botFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(6deg); }
+}
+
+@keyframes botArmMove {
+  0%, 100% { transform: rotate(-12deg) translateX(0); }
+  50% { transform: rotate(18deg) translateX(-8px); }
+}
+
+@keyframes botLegStep {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  50% { transform: translateX(10px) rotate(-8deg); }
+}
+
+@keyframes aiOrbitFloat {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(8px, 10px) scale(1.08); }
+  66% { transform: translate(16px, -4px) scale(.96); }
+}
+
+@media (max-width: 900px) {
+  .portal-actions.portal-actions--three { grid-template-columns: 1fr; }
+  .portal-actions--three .portal-btn { min-height: 170px; }
+}
