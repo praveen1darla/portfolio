@@ -586,3 +586,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+
+// Gate main content until a path card is selected
+document.addEventListener('DOMContentLoaded', () => {
+  const gatedSections = document.querySelectorAll('.gated-section');
+  const revealSection = (id) => {
+    gatedSections.forEach(section => {
+      section.classList.toggle('section-revealed', section.id === id);
+    });
+    setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+  };
+
+  document.querySelectorAll('[data-reveal-section]').forEach(link => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      revealSection(link.getAttribute('data-reveal-section'));
+    });
+  });
+
+  document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const id = link.getAttribute('href').slice(1);
+      if (document.getElementById(id)?.classList.contains('gated-section')) {
+        revealSection(id);
+      }
+    });
+  });
+});

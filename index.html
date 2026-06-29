@@ -74,13 +74,13 @@
       <h2 class="path-title">Choose Your Path</h2>
       <p class="path-copy">Before the full portfolio opens, choose what you want to see first.</p>
       <div class="path-grid">
-        <a class="path-card path-card-about" href="#about">
+        <a class="path-card path-card-about" href="#about" data-reveal-section="about">
           <div class="path-icon"><i class="fas fa-user-tie"></i></div>
           <h3>About</h3>
           <p>Profile, education, skills, location, collaboration status, and professional summary.</p>
           <span>Open About <i class="fas fa-arrow-right"></i></span>
         </a>
-        <a class="path-card path-card-cyber" href="#projects">
+        <a class="path-card path-card-cyber" href="#projects" data-reveal-section="projects">
           <div class="path-icon"><i class="fas fa-shield-halved"></i></div>
           <h3>Cybersecurity Projects</h3>
           <p>Threat hunting system, CyberGuard AI chatbot, and universal file converter projects.</p>
@@ -97,9 +97,9 @@
   </section>
 
   <!-- ========== ABOUT ========== -->
-  <section class="section" id="about">
+  <section class="section gated-section" id="about">
     <div class="container">
-      <h2 class="section-title"><span class="title-decorator">//</span> Professional Profile</h2>
+      <h2 class="section-title"><span class="title-decorator">//</span> About</h2>
       <div class="about-wrapper">
         <!-- Profile Photo -->
         <div class="about-photo-card">
@@ -270,7 +270,7 @@
   </section>
 
   <!-- ========== PROJECTS ========== -->
-  <section class="section section-alt" id="projects">
+  <section class="section section-alt gated-section" id="projects">
     <div class="cyber-bg-grid"></div>
     <div class="container">
       <h2 class="section-title slide-up"><span class="title-decorator">//</span> Selected Projects</h2>
@@ -328,7 +328,7 @@
   </section>
 
   <!-- ========== ROBOTICS PROJECTS ========== -->
-  <section class="section" id="robotics">
+  <section class="section gated-section" id="robotics">
     <div class="container">
       <h2 class="section-title slide-up"><span class="title-decorator">//</span> Robotics Engineering</h2>
       <p class="section-desc slide-up">Autonomous systems work combining ROS 2, LiDAR perception, SLAM, mapping, and navigation architecture.</p>
@@ -393,7 +393,7 @@
   </section>
 
   <!-- ========== CONTACT ========== -->
-  <section class="section" id="contact">
+  <section class="section gated-section" id="contact">
     <div class="container">
       <h2 class="section-title"><span class="title-decorator">//</span> Let’s Build Something Secure</h2>
       <div class="contact-grid">
