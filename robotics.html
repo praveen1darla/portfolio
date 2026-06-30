@@ -18,6 +18,7 @@
   <style>
     body.robotics-page {
       min-height: 100vh;
+      background: linear-gradient(135deg, #0a0e17 0%, #0f1424 100%);
     }
 
     .robotics-shell {
@@ -30,7 +31,28 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background: radial-gradient(circle at 80% 10%, rgba(56, 213, 255, .22), transparent 28%), radial-gradient(circle at 10% 50%, rgba(121, 242, 192, .13), transparent 32%);
+      z-index: 0;
+      background:
+        /* Asanoha (hemp leaf) pattern base */
+        repeating-linear-gradient(45deg,
+          rgba(255, 182, 193, 0.04) 0px,
+          rgba(255, 182, 193, 0.04) 2px,
+          transparent 2px,
+          transparent 40px),
+        repeating-linear-gradient(-45deg,
+          rgba(56, 213, 255, 0.03) 0px,
+          rgba(56, 213, 255, 0.03) 2px,
+          transparent 2px,
+          transparent 40px),
+        /* Seigaiha (wave) pattern */
+        repeating-radial-gradient(circle at 50% -100%,
+          rgba(121, 242, 192, 0.04) 0px,
+          rgba(121, 242, 192, 0.04) 20px,
+          transparent 20px,
+          transparent 40px),
+        /* Gradient accents */
+        radial-gradient(circle at 80% 10%, rgba(56, 213, 255, .22), transparent 28%),
+        radial-gradient(circle at 10% 50%, rgba(121, 242, 192, .13), transparent 32%);
     }
 
     .robotics-nav {
@@ -64,6 +86,16 @@
       background: rgba(56, 213, 255, .09);
       color: #e9fbff;
       font-weight: 900;
+      /* Japanese-inspired details */
+      box-shadow:
+        2px 2px 0 rgba(255, 182, 193, 0.15),
+        -1px -1px 0 rgba(121, 242, 192, 0.1);
+    }
+
+    .return-chip:hover {
+      box-shadow:
+        4px 4px 0 rgba(255, 105, 180, 0.3),
+        -2px -2px 0 rgba(121, 242, 192, 0.2);
     }
 
     .robotics-hero {
@@ -555,9 +587,9 @@
     .robotics-info-card {
       padding: 24px;
       border-radius: 24px;
-      background: rgba(255, 255, 255, .065);
+      background: linear-gradient(135deg, rgba(255, 182, 193, 0.08), rgba(255, 255, 255, .065));
       border: 1px solid rgba(255, 255, 255, .1);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, .25);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .25), 0 0 24px rgba(255, 182, 193, 0.05);
     }
 
     .robotics-info-card i {
@@ -593,13 +625,20 @@
       text-align: left;
       cursor: pointer;
       transition: var(--transition);
+      /* Japanese-inspired brushstroke border effect */
+      box-shadow:
+        2px 2px 0 rgba(255, 182, 193, 0.2),
+        -1px -1px 0 rgba(56, 213, 255, 0.1);
     }
 
     .topic-btn:hover,
     .topic-btn.active {
       transform: translateY(-6px);
       border-color: rgba(56, 213, 255, .48);
-      box-shadow: var(--accent-glow);
+      box-shadow:
+        var(--accent-glow),
+        4px 4px 0 rgba(255, 105, 180, 0.3),
+        -2px -2px 0 rgba(56, 213, 255, 0.2);
       background: rgba(56, 213, 255, .10);
     }
 
@@ -655,10 +694,10 @@
       place-items: center;
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, .14);
-      background: rgba(255, 255, 255, .075);
+      background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 255, 255, .075));
       font-size: 1.45rem;
       color: #bff8ff;
-      box-shadow: 0 0 32px rgba(122, 245, 255, .18);
+      box-shadow: 0 0 32px rgba(122, 245, 255, .18), 0 0 16px rgba(255, 182, 193, 0.1);
     }
 
     .symbol-scan {
@@ -790,7 +829,14 @@
 </head>
 
 <body class="robotics-page">
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor">
+    <div class="cursor-inner"></div>
+  </div>
   <div class="robotics-shell">
+    <!-- Cherry Blossom Canvas -->
+    <canvas id="cherryBlossomCanvas"
+      style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;"></canvas>
     <nav class="robotics-nav">
       <a class="robotics-brand" href="index.html">DARLA PRAVEEN • ROBOTICS DOMAIN</a>
       <div>
@@ -812,10 +858,13 @@
               applications.</p>
             <p class="robotics-kicker">ROS 2 • 3D LiDAR • SLAM • Autonomous Navigation</p>
             <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;text-align:left;">
-              <div style="width:4px;height:120px;background:linear-gradient(to bottom, var(--neon-cyan), var(--neon-green));border-radius:999px;flex-shrink:0;"></div>
+              <div
+                style="width:4px;height:120px;background:linear-gradient(to bottom, var(--neon-cyan), var(--neon-green));border-radius:999px;flex-shrink:0;">
+              </div>
               <div>
                 <h2 class="robotics-subtitle" style="margin-bottom:8px;">Robotics Engineering Domain</h2>
-                <p class="robotics-lead" style="margin-bottom:0;">A dedicated technical presentation of my robotics work: 3D point cloud mapping,
+                <p class="robotics-lead" style="margin-bottom:0;">A dedicated technical presentation of my robotics
+                  work: 3D point cloud mapping,
                   localization, obstacle awareness, autonomous waypoint navigation, and custom ROS 2 architecture for
                   real-world rover systems.</p>
               </div>
@@ -952,6 +1001,114 @@
     </main>
   </div>
   <script>
+    // ───── Custom Cursor ─────
+    (function customCursor() {
+      const cursor = document.getElementById('customCursor');
+      if (!cursor) return;
+
+      // Track mouse position
+      let mouseX = 0, mouseY = 0;
+      let cursorX = 0, cursorY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      // Smooth cursor animation
+      function animateCursor() {
+        // Calculate lerp (smooth interpolation)
+        cursorX += (mouseX - cursorX - 16) * 0.15;
+        cursorY += (mouseY - cursorY - 16) * 0.15;
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        requestAnimationFrame(animateCursor);
+      }
+      animateCursor();
+    })();
+
+    // Cherry Blossom Burst Animation (on button click)
+    (function() {
+      const canvas = document.getElementById('cherryBlossomCanvas');
+      const ctx = canvas.getContext('2d');
+      let petals = [];
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      class Petal {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.size = Math.random() * 8 + 4;
+          this.speedY = Math.random() * 3 + 1;
+          this.speedX = (Math.random() - 0.5) * 4;
+          this.rotation = Math.random() * Math.PI * 2;
+          this.rotationSpeed = (Math.random() - 0.5) * 0.1;
+          this.alpha = 1;
+          this.fadeSpeed = 0.015;
+        }
+
+        update() {
+          this.y += this.speedY;
+          this.x += this.speedX;
+          this.speedY += 0.05; // Gravity
+          this.rotation += this.rotationSpeed;
+          this.alpha -= this.fadeSpeed;
+        }
+
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.rotation);
+          ctx.globalAlpha = this.alpha;
+
+          // Draw cherry blossom petal
+          ctx.beginPath();
+          ctx.fillStyle = '#ffb6c1';
+          ctx.ellipse(0, 0, this.size, this.size * 0.6, 0, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Add subtle glow
+          ctx.shadowColor = '#ff69b4';
+          ctx.shadowBlur = 5;
+          ctx.fill();
+
+          ctx.restore();
+        }
+      }
+
+      function triggerBurst(x, y) {
+        const count = 20;
+        for (let i = 0; i < count; i++) {
+          petals.push(new Petal(x, y));
+        }
+      }
+
+      // Add click listeners to all buttons
+      document.querySelectorAll('button, a, .path-card, .topic-btn, .return-chip').forEach(el => {
+        el.addEventListener('click', (e) => {
+          triggerBurst(e.clientX, e.clientY);
+        });
+      });
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        petals = petals.filter(petal => petal.alpha > 0);
+        petals.forEach(petal => {
+          petal.update();
+          petal.draw();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    })();
+
+    // Topic data and logic
     const topicData = {
       ros2: ['ROS 2', 'ROS 2 is the middleware used to connect sensors, robot logic, mapping, visualization, and control modules.', ['Used for node communication, topics, services, launch files, transforms, and modular robot architecture.', 'Advantages: scalable, real-time friendly, industry supported, and suitable for multi-robot systems.', 'In my project, ROS 2 connects LiDAR, IMU, mapping, localization, visualization, and navigation components.']],
       liosam: ['LIO-SAM', 'LIO-SAM is a LiDAR-Inertial Odometry and Mapping method that combines LiDAR scans with IMU motion data.', ['Used to estimate robot motion accurately while building a consistent map.', 'Advantages: strong accuracy, handles movement better than LiDAR-only methods, and supports real-time mapping.', 'In my project, LIO-SAM helps produce reliable odometry and 3D mapping output.']],

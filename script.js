@@ -6,6 +6,64 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ───── Custom Cursor ─────
+  (function customCursor() {
+    const cursor = document.getElementById('customCursor');
+    if (!cursor) return;
+
+    // Track mouse position
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Smooth cursor animation
+    function animateCursor() {
+      // Calculate lerp (smooth interpolation)
+      const currentSection = document.body.getAttribute('data-section') || 'home';
+      let offsetX = 10, offsetY = 10;
+      if (currentSection === 'robotics') {
+        offsetX = 16;
+        offsetY = 16;
+      } else if (currentSection === 'projects') {
+        offsetX = 20;
+        offsetY = 20;
+      } else if (currentSection === 'about') {
+        offsetX = 10;
+        offsetY = 10;
+      }
+      cursorX += (mouseX - cursorX - offsetX) * 0.15;
+      cursorY += (mouseY - cursorY - offsetY) * 0.15;
+      cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Track active section
+    function updateActiveSection() {
+      const sections = ['home', 'about', 'projects', 'robotics', 'contact'];
+      let currentSection = 'home';
+
+      sections.forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            currentSection = sectionId;
+          }
+        }
+      });
+
+      document.body.setAttribute('data-section', currentSection);
+    }
+
+    window.addEventListener('scroll', updateActiveSection);
+    updateActiveSection(); // Initial check
+  })();
+
   // ───── Hero Word Animation ─────
   (function heroWordAnimation() {
     const heroWords = document.querySelectorAll('.hero-word');

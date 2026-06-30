@@ -3,6 +3,76 @@
    Dark futuristic theme with neon accents
    ============================================ */
 
+/* ---------- CUSTOM CURSOR ---------- */
+* {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.15s ease;
+}
+
+.cursor-inner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* About Section Cursor: Purple Point Circle */
+body[data-section="about"] .cursor-inner {
+  border-color: #a855f7;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5),
+    0 0 30px rgba(168, 85, 247, 0.3);
+}
+
+/* Cyber/Projects Section Cursor: Danger Skull */
+body[data-section="projects"] .cursor-inner {
+  width: 0;
+  height: 0;
+  border: none;
+  box-shadow: none;
+}
+
+body[data-section="projects"] .cursor-inner::before {
+  content: '☠';
+  font-size: 40px;
+  color: #ff3333;
+  text-shadow: 0 0 15px rgba(255, 51, 51, 0.9),
+    0 0 30px rgba(255, 51, 51, 0.7),
+    0 0 45px rgba(255, 51, 51, 0.5);
+}
+
+/* Robotics Section Cursor: Simple Robot Face */
+body[data-section="robotics"] .cursor-inner,
+.robotics-page .cursor-inner {
+  width: 0;
+  height: 0;
+  border: none;
+  box-shadow: none;
+}
+
+body[data-section="robotics"] .cursor-inner::before,
+.robotics-page .cursor-inner::before {
+  content: '🤖';
+  font-size: 32px;
+  text-shadow: 0 0 10px rgba(121, 242, 192, 0.6),
+    0 0 20px rgba(56, 213, 255, 0.4);
+}
+
+/* Hover effect for links/buttons */
+a:hover~.custom-cursor .cursor-inner,
+button:hover~.custom-cursor .cursor-inner,
+.path-card:hover~.custom-cursor .cursor-inner {
+  transform: scale(1.5);
+}
+
 /* ---------- DESIGN TOKENS ---------- */
 :root {
   --bg-primary: #0a0e17;
@@ -272,7 +342,7 @@ img {
 
 /* ---------- UTILITY ---------- */
 .container {
-  max-width: 1100px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -414,7 +484,7 @@ img {
   z-index: 2;
   text-align: center;
   padding: 0 24px;
-  max-width: 820px;
+  max-width: 1200px;
 }
 
 .hero-tag {
@@ -732,8 +802,8 @@ img {
 /* ---------- ABOUT ---------- */
 .about-wrapper {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 30px;
+  grid-template-columns: 380px 1fr;
+  gap: 40px;
   margin-top: 50px;
   align-items: start;
 }
