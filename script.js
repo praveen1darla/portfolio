@@ -75,24 +75,35 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   // ───── Auto B.Tech Year Calculator (IST / Guntur time) ─────
-  // Academic year increments every July 1st.
-  // Schedule: 3rd Year → July 2026: 4th Year → July 2027+: Completed in 2028 • Kakinada
+  // Schedule: 
+  // - Now → May 2027: 3rd Year
+  // - June 2027 → May 2028: 4th Year
+  // - After May 2028: Completed
   (function updateBtechYear() {
     // Get current date in IST (UTC+5:30)
     const now = new Date();
     const utc = now.getTime() + now.getTimezoneOffset() * 60000;
     const ist = new Date(utc + 5.5 * 60 * 60000);
     const year = ist.getFullYear();
-    const month = ist.getMonth(); // 0-indexed, July = 6
+    const month = ist.getMonth(); // 0-indexed, January = 0, June = 5
 
-    // Base: Academic year starting July 2024 = hypothetical 1st year
-    // July 2026–June 2027 = 3rd year
-    const BASE_YEAR = 2024;
+    let academicYear;
     const MAX_YEAR = 4;
-    const GRAD_YEAR = 2029;
+    const GRAD_YEAR = 2028;
     const GRAD_LOCATION = 'Kakinada';
 
-    let academicYear = month >= 6 ? (year - BASE_YEAR + 1) : (year - BASE_YEAR);
+    // Calculate academic year based on date
+    if (year < 2027 || (year === 2027 && month <= 5)) {
+      // Before June 2027: 3rd Year
+      academicYear = 3;
+    } else if (year < 2028 || (year === 2028 && month <= 5)) {
+      // June 2027 - May 2028: 4th Year
+      academicYear = 4;
+    } else {
+      // After May 2028: Graduated
+      academicYear = MAX_YEAR + 1;
+    }
+
     const ordinal = (n) => n === 1 ? '1st' : n === 2 ? '2nd' : n === 3 ? '3rd' : n + 'th';
 
     const terminalYear = document.getElementById('terminalYear');
