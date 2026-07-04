@@ -85,11 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const year = ist.getFullYear();
     const month = ist.getMonth(); // 0-indexed, July = 6
 
-    // Base: Academic year starting July 2023 = hypothetical 1st year
-    // July 2025–June 2026 = 3rd year, July 2026–June 2027 = 4th year
-    const BASE_YEAR = 2023;
+    // Base: Academic year starting July 2024 = hypothetical 1st year
+    // July 2026–June 2027 = 3rd year
+    const BASE_YEAR = 2024;
     const MAX_YEAR = 4;
-    const GRAD_YEAR = 2028;
+    const GRAD_YEAR = 2029;
     const GRAD_LOCATION = 'Kakinada';
 
     let academicYear = month >= 6 ? (year - BASE_YEAR + 1) : (year - BASE_YEAR);
